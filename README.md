@@ -8,7 +8,7 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 * [Insert Lab Diagram Here]
 
 ## Milestones Documented
-- [ ] Phase 1: M365 Cloud Sandbox Setup & User Provisioning
-- [ ] Phase 2: Local Hypervisor & Server Deployment
+- [x] Phase 1: M365 Cloud Sandbox Setup & User Provisioning
+- [x] Phase 2: Local Hypervisor & Server Deployment
 - [ ] Phase 3: Active Directory Domain Services Setup
 - [ ] Phase 4: Hybrid Cloud Sync & Intune Enrollment
