@@ -12,3 +12,8 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 2: Local Hypervisor & Server Deployment
 - [ ] Phase 3: Active Directory Domain Services Setup
 - [ ] Phase 4: Hybrid Cloud Sync & Intune Enrollment
+
+### Phase 2 Implementation Evidence
+   Here is the live deployment of the Windows Server 2022 base environment running inside Hyper-V:
+   
+   ![Windows Server 2022 Base Installation](VM_running.png)
