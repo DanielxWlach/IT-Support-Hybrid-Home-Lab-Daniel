@@ -25,7 +25,7 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 
 ### Phase 3 Implementation Evidence
      Successfully promoted the standalone server to a Root Domain Controller, establishing the local directory database:
-
+![Active Directory Domain Controller Setup](active-directory-setup.png)
      
      
 
