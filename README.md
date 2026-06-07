@@ -10,7 +10,7 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 ## Milestones Documented
 - [x] Phase 1: M365 Cloud Sandbox Setup & User Provisioning
 - [x] Phase 2: Local Hypervisor & Server Deployment
-- [ ] Phase 3: Active Directory Domain Services Setup
+- [x] Phase 3: Active Directory Domain Services Setup
 - [ ] Phase 4: Hybrid Cloud Sync & Intune Enrollment
 
 ### Phase 1 Implementation Evidence
@@ -22,3 +22,10 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
    Here is the live deployment of the Windows Server 2022 base environment running inside Hyper-V:
    
    ![Windows Server 2022 Base Installation](VM_running.png)
+
+### Phase 3 Implementation Evidence
+     Successfully promoted the standalone server to a Root Domain Controller, establishing the local directory database:
+
+     
+     
+
