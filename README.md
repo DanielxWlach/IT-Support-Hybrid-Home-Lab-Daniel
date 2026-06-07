@@ -48,6 +48,37 @@ To secure corporate workstations against physical data exposure, I engineered a 
 Below is the live operational environment showing the 5 active user objects alongside the active, enabled Group Policy configuration:
 
 ![Active Workforce and Group Policy Management](workforce-and-gpo.png)
+
+
+
+## 🛠️ Advanced IT Infrastructure Optimization & Help Desk Operations
+
+To elevate this environment beyond a basic out-of-the-box configuration, this section details production-grade systems engineering implementations designed to enforce organizational compliance, optimize user workflows, and establish enterprise desktop baselines.
+
+### 📋 Section 1: Advanced Systems Engineering (Group Policy Objects)
+
+#### 1. Automated Enterprise Network Drive Mapping (`GPO 1`)
+* **Business Requirement:** The organization requires a standardized, centralized network storage repository accessible to all corporate personnel immediately upon session initialization. Handkeying network paths on individual client devices introduces operational overhead and potential security configuration drift.
+* **Engineering Solution:** Architected a dedicated, domain-wide Group Policy Object titled `Corp_Preferences_DriveMapping`. Rather than embedding preferences within unrelated security objects, this modular preference explicitly maps the corporate file share repository to the uniform network drive letter `Z:\`.
+* **Technical Implementation Path:** Navigated via `User Configuration` ➔ `Preferences` ➔ `Windows Settings` ➔ `Drive Maps`. Configured an `Update` action targeting the network share path (`\\DC-SERVER-2022\CompanyShare`) utilizing standard inheritance rules linked directly to the workforce Organizational Unit (OU).
+
+Below is the verified staging environment demonstrating the active object configuration and path targets:
+
+![Group Policy Management Editor - Drive Maps](drive_map.jpg)
+
+The granular deployment matrix properties enforced within the target environment:
+
+![Z: Drive Properties Mapping Details](drive_map_2.jpg)
+
+---
+
+### ⏳ [In Progress] Pending Infrastructure Implementations & Help Desk Ticket Ledger
+* 🔲 **GPO 2:** Desktop Environment Standardization (Corporate Wallpaper Enforcement)
+* 🔲 **GPO 3:** Endpoint Hardening & Access Control (Command Prompt Restrictions)
+* 🔲 **Ticket #1042:** User Account Lockout Remediation & Credential Cycle Lifecycle
+* 🔲 **Ticket #1043:** Corrupted Client-Side Name Resolution (DNS) Flushing & Validation
+* 🔲 **Ticket #1044:** Force Propagation of Active Directory Security Policies via CLI Tools
+
      
      
 
