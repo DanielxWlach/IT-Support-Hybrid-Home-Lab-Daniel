@@ -64,11 +64,11 @@ To elevate this environment beyond a basic out-of-the-box configuration, this se
 
 Below is the verified staging environment demonstrating the active object configuration and path targets:
 
-![Group Policy Management Editor - Drive Maps](drive_map.jpg)
+![Group Policy Management Editor - Drive Maps](drive_map.png)
 
 The granular deployment matrix properties enforced within the target environment:
 
-![Z: Drive Properties Mapping Details](drive_map_2.jpg)
+![Z: Drive Properties Mapping Details](drive_map_2.png)
 
 ---
 
