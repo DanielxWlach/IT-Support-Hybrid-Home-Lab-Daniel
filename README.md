@@ -80,7 +80,7 @@ The granular deployment matrix properties enforced within the target environment
 
 Below is the verified administrative template blueprint enforcing endpoint visual conformity:
 
-![Desktop Wallpaper GPO Configuration](wallpaper_gpo.jpg)
+![Desktop Wallpaper GPO Configuration](wallpaper_gpo.png)
 
 ---
 
@@ -93,7 +93,7 @@ Below is the verified administrative template blueprint enforcing endpoint visua
 
 Below is the hardened policy profile demonstrating interactive restriction paired with background script preservation:
 
-![Command Prompt Access Restriction GPO](restrict_cmd_gpo.jpg)
+![Command Prompt Access Restriction GPO](restrict_cmd_gpo.png)
 
 
 
