@@ -73,9 +73,31 @@ The granular deployment matrix properties enforced within the target environment
 
 ---
 
+#### 2. Enterprise Desktop Environment Standardization (`GPO 2`)
+* **Business Requirement:** Corporate branding guidelines dictate a uniform desktop environment across all operational endpoints. Allowing end-users to customize workspace backgrounds introduces visual non-compliance and potential exposure to unvetted imagery within customer-facing environments.
+* **Engineering Solution:** Implemented a granular environment constraint titled `Corp_Preferences_DesktopWallpaper` targeted directly at the workforce container.
+* **Technical Implementation Path:** Governed via `User Configuration` ➔ `Policies` ➔ `Administrative Templates` ➔ `Desktop` ➔ `Desktop`. Enforced the `Desktop Wallpaper` policy to state `Enabled`, pointing configuration parameters to a static system resource path (`C:\Windows\Web\Wallpaper\Windows\img0.jpg`) utilizing a unified `Fill` style matrix.
+
+Below is the verified administrative template blueprint enforcing endpoint visual conformity:
+
+![Desktop Wallpaper GPO Configuration](wallpaper_gpo.jpg)
+
+---
+
+#### 3. Endpoint Hardening & Access Control (`GPO 3`)
+* **Business Requirement:** Mitigate the internal attack surface by preventing standard non-administrative personnel from accessing local CLI environments. Restricting interactive command execution drastically reduces the success rate of malicious pivot scripts, reconnaissance commands, and unauthorized system modifications.
+* **Engineering Solution:** Established a strict security baseline policy titled `Corp_Security_RestrictCMD` linked explicitly to standard user profiles.
+* **Technical Implementation Path:** Navigated via `User Configuration` ➔ `Policies` ➔ `Administrative Templates` ➔ `System`. Toggled the `Prevent access to the command prompt` constraint to `Enabled`.
+* **Granular Constraint Justification (Script Processing Selection):** Within the policy configurations, the parameter *“Disable the command prompt script processing also?”* was intentionally designated as **`No`**. 
+  * *Architectural Logic:* Setting this constraint to **`No`** prevents standard users from interactively launching `cmd.exe` to execute manual commands, but crucially **preserves the operating system's ability to run legitimate logon, logoff, or deployment scripts in the background**. This ensures that administrative automation, mapping scripts, and security agents run seamlessly at startup without breaking core IT operational capabilities.
+
+Below is the hardened policy profile demonstrating interactive restriction paired with background script preservation:
+
+![Command Prompt Access Restriction GPO](restrict_cmd_gpo.jpg)
+
+
+
 ### ⏳ [In Progress] Pending Infrastructure Implementations & Help Desk Ticket Ledger
-* 🔲 **GPO 2:** Desktop Environment Standardization (Corporate Wallpaper Enforcement)
-* 🔲 **GPO 3:** Endpoint Hardening & Access Control (Command Prompt Restrictions)
 * 🔲 **Ticket #1042:** User Account Lockout Remediation & Credential Cycle Lifecycle
 * 🔲 **Ticket #1043:** Corrupted Client-Side Name Resolution (DNS) Flushing & Validation
 * 🔲 **Ticket #1044:** Force Propagation of Active Directory Security Policies via CLI Tools
