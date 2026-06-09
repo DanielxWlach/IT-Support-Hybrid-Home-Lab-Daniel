@@ -104,7 +104,7 @@ Below is the hardened policy profile demonstrating interactive restriction paire
 
 Below is the active Spiceworks lifecycle tracking ticket managed for this request:
 
-![Spiceworks Identity Management Ticket](spiceworks_ticket_1.jpg)
+![Spiceworks Identity Management Ticket](spiceworks_ticket_1.png)
 
 * **Diagnostic & Technical Remediations:**
   1. Logged into the Windows Server 2022 Domain Controller staging environment and initiated the **Active Directory Users and Computers (ADUC)** management console.
@@ -120,7 +120,7 @@ Below is the verified administrative intervention re-enabling the directory serv
 
 Below is the verified Spiceworks ledger entry confirming the incident has been moved to a closed operational state:
 
-![Spiceworks Closed Ticket Resolution Status](spiceworks_ticket_1_closed.png)
+![Spiceworks Closed Ticket Resolution Status](spicework_ticket_1_closed.png)
 
 ### ⏳ [In Progress] Pending Infrastructure Implementations & Help Desk Ticket Ledger
 
