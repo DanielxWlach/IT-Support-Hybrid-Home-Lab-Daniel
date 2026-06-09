@@ -122,9 +122,41 @@ Below is the verified Spiceworks ledger entry confirming the incident has been m
 
 ![Spiceworks Closed Ticket Resolution Status](spicework_ticket_1_closed.png)
 
+
+#### 🛠️ Ticket #1043: Client-Side Name Resolution (DNS) Corruption & Stale Cache Remediation
+* **ITSM Platform Environment:** Spiceworks Cloud Help Desk Portal
+* **Incident Urgency/Priority:** High / P2 (Workstation Network Isolation / Local Intranet Inaccessible)
+* **Target Identity Object:** `User: Anna Heart | OU: Staff | Device: NTX-CL-05`
+* **Symptoms Reported:** End-user reported total inability to resolve internal domain web assets (`portal.nexttechx.local`) and external web gateways. Diagnostic isolation confirmed neighboring endpoints on the same subnet were unaffected, pointing directly to a client-specific stack degradation.
+
+Below is the active Spiceworks lifecycle tracking ticket initiated for this incident:
+
+![Spiceworks DNS Trouble Ticket](spiceworks_ticket_2.png)
+
+* **Diagnostic & Technical Remediations:**
+  1. Initiated remote administrative CLI access on the target workstation asset (`NTX-CL-05`).
+  2. Executed a complete purge of the locally cached, potentially poisoned or stale address resolution table using the Windows IP configuration utility:
+     ```cmd
+     ipconfig /flushdns
+     ```
+  3. Triggered manual refresh serialization to force the endpoint to re-register its host boundaries with the local Active Directory Domain Controller DNS zone files:
+     ```cmd
+     ipconfig /registerdns
+     ```
+  4. Verified successful resolution integrity by executing a network echo test (`ping`) against the target intranet header.
+
+Below is the verified client-side resolution pipeline executed to remediate the cached network state:
+
+![Command Prompt DNS Cache Flush Execution](dns_flush.png)
+
+* **Root Cause Determination:** Technical analysis indicated local DNS resolver cache corruption. The endpoint had cached a stale IP mapping during an ungraceful lease renewal cycle, preventing correct packet routing. The records were successfully purged, and the tracking ticket has been closed and archived.
+
+Below is the verified Spiceworks ledger entry confirming the networking incident has been resolved:
+
+![Spiceworks Closed DNS Ticket Resolution](spiceworks_ticket_2_closed.png)
+
 ### ⏳ [In Progress] Pending Infrastructure Implementations & Help Desk Ticket Ledger
 
-* 🔲 **Ticket #1043:** Corrupted Client-Side Name Resolution (DNS) Flushing & Validation
 * 🔲 **Ticket #1044:** Force Propagation of Active Directory Security Policies via CLI Tools
 
      
