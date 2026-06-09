@@ -96,9 +96,34 @@ Below is the hardened policy profile demonstrating interactive restriction paire
 ![Command Prompt Access Restriction GPO](restrict_cmd_gpo.png)
 
 
+#### 🛠️ Ticket #1042: Active Directory Identity Access & Account Lifecycle Activation
+* **ITSM Platform Environment:** Spiceworks Cloud Help Desk Portal
+* **Incident Urgency/Priority:** Medium / P3 (Standard Identity Lifecycle Request)
+* **Target Identity Object:** `User: John Smith | OU: Staff | Domain: NEXTTECHX.local`
+* **Symptoms/Request Reported:** HR/Management submitted an operational request to reinstate systems access for returning personnel John Smith. The user identity object was flagged with a hard local restriction: *"Your account has been disabled. Please see your system administrator."*
+
+Below is the active Spiceworks lifecycle tracking ticket managed for this request:
+
+![Spiceworks Identity Management Ticket](spiceworks_ticket_1.jpg)
+
+* **Diagnostic & Technical Remediations:**
+  1. Logged into the Windows Server 2022 Domain Controller staging environment and initiated the **Active Directory Users and Computers (ADUC)** management console.
+  2. Traversed the organizational directory layout to locate the deactivated user target object within the designated `Staff` OU.
+  3. Audited account security attributes to verify the structural state of the object profile.
+  4. Executed identity remediation by clearing the `Account is disabled` structural constraint within the Security Principal Account options matrix, restoring active domain privileges.
+
+Below is the verified administrative intervention re-enabling the directory services object within Active Directory:
+
+![Active Directory Account Status Modification](enable_account.png)
+
+* **Root Cause/Operational Determination:** The account state was confirmed as an intentional administrative deactivation used during a standard personnel contract pause. The restriction has been lifted, authentication paths have been verified, and the tracking ticket has been successfully resolved and archived.
+
+Below is the verified Spiceworks ledger entry confirming the incident has been moved to a closed operational state:
+
+![Spiceworks Closed Ticket Resolution Status](spiceworks_ticket_1_closed.png)
 
 ### ⏳ [In Progress] Pending Infrastructure Implementations & Help Desk Ticket Ledger
-* 🔲 **Ticket #1042:** User Account Lockout Remediation & Credential Cycle Lifecycle
+
 * 🔲 **Ticket #1043:** Corrupted Client-Side Name Resolution (DNS) Flushing & Validation
 * 🔲 **Ticket #1044:** Force Propagation of Active Directory Security Policies via CLI Tools
 
