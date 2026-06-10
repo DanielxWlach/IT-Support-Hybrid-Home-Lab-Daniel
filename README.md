@@ -12,7 +12,7 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 2: Local Hypervisor & Server Deployment
 - [x] Phase 3: Active Directory Domain Services Setup
 - [x] Phase 4: Hybrid Cloud Sync & Intune Enrollment
-- [ ] Phase 5: Advanced Systems Engineering & Help Desk Operations Staging
+- [x] Phase 5: Advanced Systems Engineering & Help Desk Operations Staging
 
 ### Phase 1 Implementation Evidence
    Here is the pristine Hyper-V virtualization host environment initialized on the host laptop before OS deployment:
@@ -186,7 +186,7 @@ Below is the verified hardware configuration adjustments applied inside Hyper-V 
 
 Below is the active Spiceworks lifecycle tracking ticket initiated for this incident:
 
-![Spiceworks GPO Trouble Ticket](spiceworks_ticket_gpo.jpg)
+![Spiceworks GPO Trouble Ticket](spiceworks_ticket_gpo.png)
 
 * **Environmental Defect Encountered:** Upon accessing the terminal environment to execute the refresh command natively (`gpupdate /force`), the local Windows shell threw a standard execution error: *" 'gpupdate' is not recognized as an internal or external command, operable program or batch file."* This behavior indicated an environment `%PATH%` variable resolution disruption on the target endpoint.
 
@@ -214,7 +214,7 @@ Below is the verified terminal screenshot displaying the successful policy force
 
 Below is the verified Spiceworks ledger entry confirming resolution fulfillment and archiving:
 
-![Spiceworks Closed GPO Ticket Resolution](spiceworks_gpo_closed.jpg)
+![Spiceworks Closed GPO Ticket Resolution](spiceworks_gpo_closed.png)
      
      
 
