@@ -178,12 +178,43 @@ Below is the verified hardware configuration adjustments applied inside Hyper-V 
 * **Outcome:** The memory provisioning optimization bypassed the host contention ceiling, allowing the Domain Controller to successfully achieve an active operational state without starving the host OS.
 
 
+#### 🛠️ Ticket #1044: Active Directory Group Policy (GPO) Non-Propagation & Client-Side Refresh
+* **ITSM Platform Environment:** Spiceworks Cloud Help Desk Portal
+* **Incident Urgency/Priority:** Medium / P3 (Compliance Deficiency / Non-Applied Security Configuration)
+* **Target Identity Object:** `User: Alex Junior | OU: Staff | Device: NTX-CL-11`
+* **Symptoms Reported:** End-user Alex Junior reported that newly deployed administrative restrictions (specifically the corporate desktop interactive execution constraints) were not active on the workstation local shell context, exposing an enterprise compliance gap.
 
+Below is the active Spiceworks lifecycle tracking ticket initiated for this incident:
 
-### ⏳ [In Progress] Pending Infrastructure Implementations & Help Desk Ticket Ledger
+![Spiceworks GPO Trouble Ticket](spiceworks_ticket_gpo.jpg)
 
-* 🔲 **Ticket #1044:** Force Propagation of Active Directory Security Policies via CLI Tools
+* **Environmental Defect Encountered:** Upon accessing the terminal environment to execute the refresh command natively (`gpupdate /force`), the local Windows shell threw a standard execution error: *" 'gpupdate' is not recognized as an internal or external command, operable program or batch file."* This behavior indicated an environment `%PATH%` variable resolution disruption on the target endpoint.
 
+Below is the verified terminal path execution exception captured during diagnostics:
+
+![Command Prompt Environment Path Error](mmm.png)
+
+* **Diagnostic & Technical Remediations:**
+  1. Overrode the system environment variable parsing failure by targeting the absolute local root system file path directly where the deployment utility resides.
+  2. Bypassed the tracking failure by executing the explicit drive string path to successfully kick off immediate policy evaluation:
+     ```cmd
+     C:\Windows\System32\gpupdate.exe /force
+     ```
+  3. Audited the client-side Resultant Set of Policy (RSoP) matrix to confirm successful receipt of user-context objects and computer-context configurations using the core infrastructure reporting utility:
+     ```cmd
+     C:\Windows\System32\gpresult.exe /r
+     ```
+  4. Confirmed that target security objects (`Corp_Security_Policy`) shifted explicitly into the active `Applied Group Policy Objects` registry table.
+
+Below is the verified terminal screenshot displaying the successful policy force using the absolute system file string path:
+
+![Command Prompt Absolute Path GPO Force](gpo_update.png)
+
+* **Root Cause Determination:** The client endpoint failed to apply background policies automatically due to an environment path corruption blocking native command shortcuts. Bypassing the path via the absolute system directory successfully forced immediate policy synchronization from the primary Domain Controller database. The asset is verified compliant, and the tracking ticket has been closed and archived.
+
+Below is the verified Spiceworks ledger entry confirming resolution fulfillment and archiving:
+
+![Spiceworks Closed GPO Ticket Resolution](spiceworks_gpo_closed.jpg)
      
      
 
