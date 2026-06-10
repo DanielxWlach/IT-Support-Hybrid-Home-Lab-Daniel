@@ -155,6 +155,31 @@ Below is the verified Spiceworks ledger entry confirming the networking incident
 
 ![Spiceworks Closed DNS Ticket Resolution](spiceworks_ticket_2_closed.png)
 
+
+### 🚨 Bonus Showcase: Hyper-V Host Resource Contention Troubleshooting
+* **Infrastructure Exception:** Virtual Machine State Change Failure (`Error Code: 0x800705AA`)
+* **Environment Context:** Local Host System (Type-2 Hypervisor Layer) executing `DC-Server-2022`
+* **Symptoms Identified:** Triggering the execution state on the Domain Controller dropped a hard hypervisor intercept fault: *"Unable to allocate 2560 MB of RAM: Insufficient system resources exist."*
+
+Below is the verified resource depletion error intercepted during the lab initialization phase:
+
+![Hyper-V Resource Allocation Error](Storage_issue.png)
+
+* **Root Cause Diagnostics:** The physical host system experienced RAM exhaustion due to concurrent background operational processes. The hypervisor layer intentionally denied the VM boot request to prevent host OS instability or a Blue Screen of Death (BSOD) caused by memory starvation.
+* **Engineering Resolution Matrix:** 1. Gracefully terminated unnecessary high-overhead consumer processes on the parent host to reclaim hardware pages.
+  2. Navigated to `Hyper-V Manager` ➔ `DC-Server-2022 Settings` ➔ `Memory Properties`.
+  3. Reconfigured the hypervisor's memory allocation strategy by enabling **Dynamic Memory provisioning**. 
+  4. Adjusted the absolute `Startup RAM` floor matrix to a lower boundary conditions threshold ($2048\text{ MB}$ initialization base, down-scaling to a minimum active footprint of $1024\text{ MB}$).
+
+Below is the verified hardware configuration adjustments applied inside Hyper-V Manager to optimize host memory distribution:
+
+![Hyper-V Memory Optimization Settings](hyperv_memory_fix.png)
+  
+* **Outcome:** The memory provisioning optimization bypassed the host contention ceiling, allowing the Domain Controller to successfully achieve an active operational state without starving the host OS.
+
+
+
+
 ### ⏳ [In Progress] Pending Infrastructure Implementations & Help Desk Ticket Ledger
 
 * 🔲 **Ticket #1044:** Force Propagation of Active Directory Security Policies via CLI Tools
