@@ -281,8 +281,6 @@ Below is the hardened Advanced Security configuration window, illustrating broke
 
 ![Advanced NTFS File Share Security Boundaries](ntfs_permissions.jpg)
 
-#### 🎯 Strategic Engineering Competency
-Configuring restricted file access spaces via explicit security group assignments demonstrates a clear understanding of the **Principle of Least Privilege (PoLP)**. This operational milestone proves your ability to secure corporate network assets, audit file-system structural layers, and systematically protect sensitive internal business properties from unauthorized internal horizontal privilege escalation.
 
      
      
