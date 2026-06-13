@@ -245,12 +245,15 @@ Below is the verified operational script and output execution log successfully p
 #### 🔍 Environmental Troubleshooting & Path Resolution
 * **Directory Path Debugging Exception:** Initial execution yielded delivery faults due to an organizational directory path structural mismatch. The target active environment utilized a nested root design schema rather than a flat baseline layout.
 * **Remediation Resolution:** Intercepted the failure sequence by analyzing the directory hierarchy within the ADUC management console. Reconfigured the deployment string variable parameter from a flat path directly to the explicit nested container destination query: 
+
+```markdown
+
 ```powershell
-  $TargetOU = "OU=Staff,OU=Corp_Root,DC=NextTechX,DC=local"
+$TargetOU = "OU=Staff,OU=Corp_Root,DC=NextTechX,DC=local"
+
+
 
 ![Active Directory Bulk Onboarding Results](aduc_bulk_result.jpg)
-
-
 
 
 
