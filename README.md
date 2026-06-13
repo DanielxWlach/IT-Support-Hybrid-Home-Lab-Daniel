@@ -215,6 +215,46 @@ Below is the verified terminal screenshot displaying the successful policy force
 Below is the verified Spiceworks ledger entry confirming resolution fulfillment and archiving:
 
 ![Spiceworks Closed GPO Ticket Resolution](spiceworks_gpo_closed.png)
+
+
+
+---
+
+### 🤖 PDirectory Automation & Bulk Identity Provisioning (PowerShell)
+* **Infrastructure Layer:** Automated Directory Database Manipulation (IAM)
+* **Automation Tooling:** PowerShell Scripting Engine / ActiveDirectory Module
+* **Operational Scope:** Scalable User Lifecycle Management & Automated HR Integration
+
+#### 🌐 Architectural Overview
+To demonstrate competency in scalable enterprise workflows, manual GUI object creation was replaced with automated pipeline processing. A custom PowerShell scripting deployment was engineered to parse incoming HR data streams (`.csv`) and programmatically provision directory records under structured corporate compliance boundaries.
+
+Below is the raw human resources data roster staged inside Notepad prior to pipeline processing:
+
+![Staged HR CSV Employee Roster](notepad_csv.jpg)
+
+Below is the verified operational script and output execution log successfully processing database identities:
+
+![PowerShell Bulk User Provisioning Deployment](powershell_script.jpg)
+
+#### 🛠️ Automation Logic & Parameters
+1. **Data Parsing:** Script ingests raw data headers (`FirstName`, `LastName`, `Department`, `Title`) to eliminate manual data entry human error.
+2. **String Interpolation:** Automatically structures standardized enterprise naming matrices, generating the unique User Principal Name (`first.last@nexttechx.local`) and localized SAM accounts.
+3. **Security Baselines:** Injects an identity security floor by assigning cryptographically masked default credentials while simultaneously enforcing the `ChangePasswordAtLogon` policy restriction.
+4. **Target Routing:** Directly maps and drops structural principal accounts into their designated target organizational container.
+
+#### 🔍 Environmental Troubleshooting & Path Resolution
+* **Directory Path Debugging Exception:** Initial execution yielded delivery faults due to an organizational directory path structural mismatch. The target active environment utilized a nested root design schema rather than a flat baseline layout.
+* **Remediation Resolution:** Intercepted the failure sequence by analyzing the directory hierarchy within the ADUC management console. Reconfigured the deployment string variable parameter from a flat path directly to the explicit nested container destination query: 
+```powershell
+  $TargetOU = "OU=Staff,OU=Corp_Root,DC=NextTechX,DC=local"
+
+![Active Directory Bulk Onboarding Results](aduc_bulk_result.jpg)
+
+
+
+
+
+
      
      
 
