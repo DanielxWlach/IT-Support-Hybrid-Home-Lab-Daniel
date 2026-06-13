@@ -269,7 +269,7 @@ To implement enterprise-grade data security baselines, a role-based access manag
 
 Below is the active directory state validating the creation of standardized organizational security groups:
 
-![Active Directory Role Based Security Groups](aduc_security_groups.jpg)
+![Active Directory Role Based Security Groups](ADUC_groups.jpg)
 
 #### 🛠️ Security Engineering & DACL Refinement
 1. **Security Group Provisioning:** Generated explicit global security objects (`SG-Finance`, `SG-Marketing`, `SG-HR`) within the corporate domain root to act as logical permission boundaries.
