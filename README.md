@@ -230,7 +230,7 @@ To demonstrate competency in scalable enterprise workflows, manual GUI object cr
 
 Below is the raw human resources data roster staged inside Notepad prior to pipeline processing:
 
-![Staged HR CSV Employee Roster](notepad_script.jpg)
+![Staged HR CSV Employee Roster](notepad_script.png)
 
 Below is the verified operational script and output execution log successfully processing database identities:
 
