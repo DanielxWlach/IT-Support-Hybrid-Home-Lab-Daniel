@@ -220,7 +220,7 @@ Below is the verified Spiceworks ledger entry confirming resolution fulfillment 
 
 ---
 
-### 🤖 PDirectory Automation & Bulk Identity Provisioning (PowerShell)
+### 🤖 Phase 3: PDirectory Automation & Bulk Identity Provisioning (PowerShell)
 * **Infrastructure Layer:** Automated Directory Database Manipulation (IAM)
 * **Automation Tooling:** PowerShell Scripting Engine / ActiveDirectory Module
 * **Operational Scope:** Scalable User Lifecycle Management & Automated HR Integration
@@ -257,7 +257,32 @@ $TargetOU = "OU=Staff,OU=Corp_Root,DC=NextTechX,DC=local"
 ![Active Directory Bulk Onboarding Results](aduc_bulk_result.jpg)
 
 
+---
 
+### 🛡️ Phase 4: Role-Based Access Control (RBAC) & Network File Share Governance
+* **Infrastructure Layer:** Secured Distributed Storage Architecture (Data Security)
+* **Access Control Methodology:** Principle of Least Privilege (PoLP) via NTFS Discretionary Access Control Lists (DACLs)
+* **Operational Scope:** Structural Security Group Provisioning and Multi-Departmental Share Isolation
+
+#### 🌐 Architectural Overview
+To implement enterprise-grade data security baselines, a role-based access management framework was engineered on the storage tier. Moving away from highly inefficient individual user permission mappings, the directory architecture was grouped by departmental boundaries utilizing Active Directory Security Groups. This infrastructure limits cross-departmental data exposure and establishes strict governance over local network assets.
+
+Below is the active directory state validating the creation of standardized organizational security groups:
+
+![Active Directory Role Based Security Groups](aduc_security_groups.jpg)
+
+#### 🛠️ Security Engineering & DACL Refinement
+1. **Security Group Provisioning:** Generated explicit global security objects (`SG-Finance`, `SG-Marketing`, `SG-HR`) within the corporate domain root to act as logical permission boundaries.
+2. **Identity-to-Role Mapping:** Populated the newly engineered security containers with the automated user profiles generated during pipeline ingestion (e.g., nesting Marcus Vance directly inside `SG-Finance`).
+3. **Inheritance Disruption:** Structural parent-to-child permission inheritance was explicitly broken at the departmental directory root (`Company_Shares\Finance_Data`). This action severed standard broad access permissions cascading from higher-level file volumes.
+4. **DACL Hardening:** Completely purged the generic system-wide `Users` principal string from the security control table. Explicit **Modify, Read & Execute, List Folder Contents, and Write** authorization was injected exclusively for the designated security group (`SG-Finance`).
+
+Below is the hardened Advanced Security configuration window, illustrating broken inheritance and explicit group containment:
+
+![Advanced NTFS File Share Security Boundaries](ntfs_permissions.jpg)
+
+#### 🎯 Strategic Engineering Competency
+Configuring restricted file access spaces via explicit security group assignments demonstrates a clear understanding of the **Principle of Least Privilege (PoLP)**. This operational milestone proves your ability to secure corporate network assets, audit file-system structural layers, and systematically protect sensitive internal business properties from unauthorized internal horizontal privilege escalation.
 
      
      
