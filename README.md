@@ -343,6 +343,86 @@ Documentation Reference:
 ![Browser Infrastructure Successfully Patched](msedge_update_done.jpg)
 
 
+🔄 Phase 3: Microsoft Entra Connect Sync Core Deployment
+With network communications baseline-validated, the actual directory synchronization suite was introduced to bridge the local Active Directory database engine to the cloud.
+
+4. Legacy Script Blocker Mitigation
+Technical Objective: Allow the Microsoft Entra Connect Sync installation wizard to spin up its embedded interactive web sign-in frame for secure cloud administrative handshakes.
+
+The Error Encountered (javascript_issue.jpg): Upon reaching the Connect to Microsoft Entra step, the wizard abruptly failed with a blank sub-window displaying: "Something went wrong. JavaScript is required to sign in. Your browser either does not support JavaScript or it is being blocked. Enable JavaScript in your browser or use one which supports it."
+
+Root Cause Analysis: The integrated container wrapper inside the sync setup client relies on underlying Internet Explorer/Edge rendering rules. Windows Server's default security template sets Internet Explorer Enhanced Security Configuration (IE ESC) to strict mode, completely disabling active scripting routines on application-level web frames.
+
+Engineering Resolution (javascript_issue_solve.jpg): Navigated directly to Server Manager -> Local Server. Located the IE Enhanced Security Configuration parameter toggle link. In the properties popup window, changed the radio buttons under both Administrators and Users from On (Recommended) to Off. Clicked OK to commit, and re-initialized the wizard wrapper.
+
+Documentation Reference:
+
+Markdown
+![Active Script Block Window](javascript_issue.jpg)
+![Toggling Server Manager IE ESC to Off](javascript_issue_solve.jpg)
+
+### 5. Identity Sign-In Method Strategy Configuration
+* **Technical Objective:** Choose an identity translation model that maps domain users to cloud instances without introducing high-overhead local server dependencies.
+* **Engineering Configuration Selection (`MS_Entra_config.jpg`):**
+  * **Password Hash Synchronization (PHS):** Selected as the primary sign-on method. This securely replicates a unidirectional SHA-256 cryptographic hash of a user's local Active Directory password into Entra ID, facilitating access using matching credentials without requiring local servers to process live authentication traffic.
+  * **Enable Single Sign-On (SSO):** Checkbox explicitly enabled. This sets up Kerberos computer accounts inside the local Active Directory forest to provide Seamless SSO, automatically logging corporate desktop-bound users into cloud tools when connected to the local network.
+* **Documentation Reference:**
+  ```markdown
+![Configuring User Sign-In Strategy and SSO](MS_Entra_config.jpg)
+6. On-Premises Directory Connector Registration Fault
+Technical Objective: Bind the Microsoft Entra Sync database client explicitly to the local on-premises directory forest schema structure.
+
+The Error Encountered (problem_2.jpg): After filling in local directory data and targeting the domain root, a hard stop banner warned: "The domain specified in the credentials does not exist or cannot be contacted. Using credentials with a fully qualified domain may help to resolve this issue."
+
+Root Cause Analysis: The wizard failed to reach or authorize communications with the Domain Controller because of a strict domain namespace lookup failure or inadequate account scoping.
+
+Engineering Resolution: Confirmed exact domain naming by calling structural parameters natively via the local system environment (echo %userdomain%). Adjusted the connector input values to explicitly reference the fully qualified domain name (FQDN) NextTechX.local, added enterprise management accounts to clear structural authentication loops, and scoped sync processing patterns cleanly to the local production container (Corp_Root).
+
+Documentation Reference:
+
+Markdown
+![On-Premises Directory Forest Connection Warning](problem_2.jpg)
+
+### 7. Optional Enterprise Security Features Provisioning
+* **Technical Objective:** Elevate the directory interface loop from a basic one-way downstream sync engine into a highly robust, write-back capable workspace.
+* **Engineering Configuration Selection (`pw_writeback.jpg`):**
+  * **Password Hash Synchronization:** Remained selected to form our core identity matching engine.
+  * **Password Writeback:** Explicitly checked and activated. This enables bi-directional credential flow; if a user initiates a self-service password reset (SSPR) or an administrator alters an identity token directly inside the cloud-native Microsoft 365 dashboard, the system immediately replicates that modification back down to the local Windows Server domain controller database.
+* **Documentation Reference:**
+  ```markdown
+![Provisioning Password Writeback Under Optional Features](pw_writeback.jpg)
+📊 Phase 4: Verification, Initialization, & Cloud Status Audit
+8. Directory Link Finalization Validation
+Technical Objective: Commit the active identity mapping schemas, trigger directory synchronization loops, and log server environment warnings.
+
+Outcome Verification (MS_Entra_config_complete.jpg): The wizard executed all structural parameters successfully and generated the final confirmation dashboard: "Microsoft Entra Connect Sync configuration succeeded. The synchronization process has been initiated."
+
+Critical Administrative Review Insights:
+
+The wizard flagged an optimization warning indicating that the Active Directory Recycle Bin is currently disabled on the local forest—noted for subsequent domain health cleanup cycles.
+
+Confirmed that the source anchor profile is pinned directly to the AD attribute value: mS-DS-ConsistencyGuid.
+
+Verified that Seamless SSO configurations are active and require a Group Policy template push to distribute Kerberos endpoints across corporate client workstations.
+
+Documentation Reference:
+
+
+### 9. Microsoft Entra ID Cloud Object Synchronization Audit
+* **Technical Objective:** Verify that accounts constructed on the local Windows Server database successfully synchronized up to the cloud-native identity control tier.
+* **Validation Outcome (`Entra_Users_connected.jpg`):** Logged natively into the **Microsoft Entra Admin Center** web panel and reviewed the global user index blade. The workspace validates that the local database objects are fully synchronized as matching identity objects, complete with assigned domain properties.
+* **Synchronized Lab Assets Inventory:**
+  * **Anna Heart** (`aheart@NextTech...`)
+  * **David Kim** (`david.kim@NextTech...`)
+  * **Elena Rostova** (`elena.rostova@Ne...`)
+  * **Jane Doe** (`jdoe@NextTechXL...`)
+  * **John Smith** (`jsmith@NextTech...`)
+  * **Marcus Vance** (`marcus.vance@N...`)
+  * **Sophia Chen** (`sophia.chen@Nex...`)
+  * **Daniel Wlach** (`WlachDaniel@Ne...`)
+* **Documentation Reference:**
+  ```markdown
+![Cloud Portal Directory Verification Blade](Entra_Users_connected.jpg)
 
      
      
