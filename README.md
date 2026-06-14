@@ -388,7 +388,6 @@ With network communications baseline-validated, the actual directory synchroniza
 
 #### Documentation References:
 ![Provisioning Password Writeback Under Optional Features](pw_writeback.jpg)
-![Microsoft Entra Connect Synchronization Topology Baseline Status](ms_entra_connected.jpg)
 
 ---
 
