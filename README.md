@@ -282,7 +282,6 @@ Below is the hardened Advanced Security configuration window, illustrating broke
 ![Advanced NTFS File Share Security Boundaries](ntfs_permissions.jpg)
 
 -----
-
 Microsoft 365 Hybrid Identity Infrastructure Lab
 A comprehensive, production-grade deployment log detailing the architecture, implementation steps, security mitigations, and validation of a hybrid identity sandbox environment linking an on-premises Windows Server directory to Microsoft Entra ID.
 
@@ -295,15 +294,15 @@ Cloud Tenant Space: NextTechX Lab (NEXTTECHXLAB.onmicrosoft.com)
 
 Deployment Platform: Windows Server 2022 Datacenter running inside an isolated Hyper-V virtual environment.
 
-🛠️ Phase 1: Infrastructure Preparation & Core Identity Provisioning
+🛠️ Phase 1: Infrastructure Preparation & Core Network Troubleshooting
 Before configuring directory synchronization tools, the underlying network interfaces and cloud administration spaces required baseline alignment to handle enterprise-level cloud communications.
 
 1. External DNS Resolution and Local Loopback Alignment
 Technical Objective: Establish stable public internet routing paths for cloud endpoint registration while maintaining localized Active Directory Domain Services (AD DS) name resolution.
 
-The Challenge: Initial lookups out to public endpoints within the virtual machine failed with DNS_PROBE_FINISHED_BAD_CONFIG errors because the internal interface was isolated from public forwarders while maintaining internal-only name pointers.
+The Challenge (Connection_issue.jpg): Initial lookups out to public endpoints within the virtual machine failed with DNS_PROBE_FINISHED_BAD_CONFIG errors. The domain controller was completely isolated from public forwarders while maintaining internal-only name pointers.
 
-Engineering Resolution: The IPv4 configuration on the primary network adapter was systematically modified to balance both lookup requirements:
+Engineering Resolution (IPv4.jpg): The IPv4 configuration on the primary network adapter was systematically modified to balance both lookup requirements:
 
 IP Address assignment managed dynamically via local DHCP routing paths.
 
@@ -311,55 +310,56 @@ Preferred DNS Server pointed directly to the local loopback address (127.0.0.1).
 
 Alternate DNS Server explicitly set to Google's public routing interface (8.8.8.8) to capture and resolve outbound public traffic safely.
 
-Verification Command:
+Verification Loop (dns_flush.jpg & Connection_issue_solved.jpg): Executed a command-line cache clear to flush stale resolution tables, fully restoring public internet routing paths to the Microsoft Entra cloud ecosystem:
 
-DOS
 ipconfig /flushdns
-* **Documentation Reference:**
+
+* **Documentation References:**
   ```markdown
-![Network IPv4 Interface Properties Setup](IPv4.jpg)
+  ![DNS Lookup Resolution Failure](Connection_issue.jpg)
+  ![Network IPv4 Interface Properties Setup](IPv4.jpg)
+  ![Flushing Local DNS Resolver Cache](dns_flush.jpg)
+  ![Successful WAN Network Connectivity Restored](Connection_issue_solved.jpg)
 🔐 Phase 2: Administrative Elevation & Portal Workspace Optimization
 2. Tenant Administration RBAC Elevation
 Technical Objective: Provision an administrative identity with sufficient security permissions to schema-write, register synchronization agents, and manage tenant objects.
 
-The Error Encountered: Attempting to perform early workspace enrollment resulted in an explicit security block: "You don't have access to this. Your account does not have permission to view or manage this page."
+The Error Encountered (access_deny.jpg): Attempting to perform early workspace enrollment resulted in an explicit security block: "You don't have access to this. Your account does not have permission to view or manage this page."
 
 Root Cause Analysis: The active account clearing the initial multi-factor authentication handshake lacked directory-level management rights. Authentic hybrid sync attachment requires a security context with tenant-wide orchestration capabilities.
 
-Engineering Resolution: Accessed the directory control pane using the fallback bootstrap administrator profile and updated the user role allocation matrix. The target identity account was granted explicit directory security visibility.
+Engineering Resolution (access_deny_resolved.jpg): Accessed the directory control pane using the fallback bootstrap administrator profile and updated the user role allocation matrix to elevate the account.
 
 Assigned Security Profile: Global Administrator role mapped to wlachdaniel@nexttechxlab.onmicrosoft.com.
 
-Documentation Reference:
+Documentation References:
 
 
 ### 3. Modern Browser Core Upgrades for Cloud Management
 * **Technical Objective:** Ensure the server host's web view engines safely support current OAuth 2.0 frames, JavaScript rendering trees, and modern web application interfaces utilized by the Entra ID ecosystem.
-* **The Challenge:** The stock version of Microsoft Edge native to fresh Windows Server 2022 media packages (frequently Version 86 or earlier) consistently threw performance warnings and failed to correctly load complex elements within cloud portal interfaces.
-* **Engineering Resolution:** Executed a manual browser compilation update across the host node, elevating the installation profile to a current Chromium architecture framework to guarantee smooth communication paths.
-* **Documentation Reference:**
+* **The Challenge (`msedge_update.jpg`):** The stock version of Microsoft Edge native to fresh Windows Server 2022 media packages (Version 86) consistently threw performance warnings and failed to correctly load complex elements within cloud portal interfaces.
+* **Engineering Resolution (`msedge_update_done.jpg`):** Executed a manual browser compilation update across the host node, elevating the installation profile to a current Chromium architecture framework to guarantee smooth communication paths.
+* **Documentation References:**
   ```markdown
-![Outdated Browser Warning](msedge_update.jpg)
-![Browser Infrastructure Successfully Patched](msedge_update_done.jpg)
+  
+  ![Outdated Browser Warning](msedge_update.jpg)
+  ![Browser Infrastructure Successfully Patched](msedge_update_done.jpg)
 
-
+  
 🔄 Phase 3: Microsoft Entra Connect Sync Core Deployment
 With network communications baseline-validated, the actual directory synchronization suite was introduced to bridge the local Active Directory database engine to the cloud.
 
 4. Legacy Script Blocker Mitigation
 Technical Objective: Allow the Microsoft Entra Connect Sync installation wizard to spin up its embedded interactive web sign-in frame for secure cloud administrative handshakes.
 
-The Error Encountered (javascript_issue.jpg): Upon reaching the Connect to Microsoft Entra step, the wizard abruptly failed with a blank sub-window displaying: "Something went wrong. JavaScript is required to sign in. Your browser either does not support JavaScript or it is being blocked. Enable JavaScript in your browser or use one which supports it."
+The Error Encountered (javascript_issue.jpg): Upon reaching the Connect to Microsoft Entra step, the wizard abruptly failed with a blank sub-window displaying: "Something went wrong. JavaScript is required to sign in. Your browser either does not support JavaScript or it is being blocked."
 
 Root Cause Analysis: The integrated container wrapper inside the sync setup client relies on underlying Internet Explorer/Edge rendering rules. Windows Server's default security template sets Internet Explorer Enhanced Security Configuration (IE ESC) to strict mode, completely disabling active scripting routines on application-level web frames.
 
 Engineering Resolution (javascript_issue_solve.jpg): Navigated directly to Server Manager -> Local Server. Located the IE Enhanced Security Configuration parameter toggle link. In the properties popup window, changed the radio buttons under both Administrators and Users from On (Recommended) to Off. Clicked OK to commit, and re-initialized the wizard wrapper.
 
-Documentation Reference:
+Documentation References:
 
-Markdown
-![Active Script Block Window](javascript_issue.jpg)
-![Toggling Server Manager IE ESC to Off](javascript_issue_solve.jpg)
 
 ### 5. Identity Sign-In Method Strategy Configuration
 * **Technical Objective:** Choose an identity translation model that maps domain users to cloud instances without introducing high-overhead local server dependencies.
@@ -372,7 +372,7 @@ Markdown
 6. On-Premises Directory Connector Registration Fault
 Technical Objective: Bind the Microsoft Entra Sync database client explicitly to the local on-premises directory forest schema structure.
 
-The Error Encountered (problem_2.jpg): After filling in local directory data and targeting the domain root, a hard stop banner warned: "The domain specified in the credentials does not exist or cannot be contacted. Using credentials with a fully qualified domain may help to resolve this issue."
+The Error Encountered (problem_2.jpg): After filling in local directory data and targeting the domain root, a hard stop banner warned: "The domain specified in the credentials does not exist or cannot be contacted."
 
 Root Cause Analysis: The wizard failed to reach or authorize communications with the Domain Controller because of a strict domain namespace lookup failure or inadequate account scoping.
 
@@ -381,7 +381,7 @@ Engineering Resolution: Confirmed exact domain naming by calling structural para
 Documentation Reference:
 
 Markdown
-![On-Premises Directory Forest Connection Warning](problem_2.jpg)
+![On-Premises Directory Forest Connection Warning](problem.jpg)
 
 ### 7. Optional Enterprise Security Features Provisioning
 * **Technical Objective:** Elevate the directory interface loop from a basic one-way downstream sync engine into a highly robust, write-back capable workspace.
@@ -390,7 +390,7 @@ Markdown
   * **Password Writeback:** Explicitly checked and activated. This enables bi-directional credential flow; if a user initiates a self-service password reset (SSPR) or an administrator alters an identity token directly inside the cloud-native Microsoft 365 dashboard, the system immediately replicates that modification back down to the local Windows Server domain controller database.
 * **Documentation Reference:**
   ```markdown
-![Provisioning Password Writeback Under Optional Features](pw_writeback.jpg)
+  ![Provisioning Password Writeback Under Optional Features](pw_writeback.jpg)
 📊 Phase 4: Verification, Initialization, & Cloud Status Audit
 8. Directory Link Finalization Validation
 Technical Objective: Commit the active identity mapping schemas, trigger directory synchronization loops, and log server environment warnings.
@@ -424,6 +424,6 @@ Documentation Reference:
   ```markdown
 ![Cloud Portal Directory Verification Blade](Entra_Users_connected.jpg)
 
-     
+
      
 
