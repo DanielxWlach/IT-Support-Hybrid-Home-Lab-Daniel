@@ -493,7 +493,26 @@ $Cred.GetNetworkCredential().Password
 ![Local PowerShell Domain Controller Writeback Verification](local_writeback_validation.jpg)
 
 
+## ⚙️ Phase 9: Post-Deployment Operations — Hybrid Security Group Sync Topology
 
+With bidirectional credential channels operating correctly, infrastructure operations shifted to scaling security administration. This phase validates the synchronization of on-premises security groups to Microsoft Entra ID, establishing the foundational pipeline required for Role-Based Access Control (RBAC) and automated cloud license provisioning.
+
+### 1. On-Premises Security Group Architecture & Nesting
+* **Technical Objective:** Establish a structural administrative security boundary locally and map synchronized user identities to it.
+* **Execution:** Constructed a new Global Security group named `M365_Licensed_Users` inside the designated `Staff` Organizational Unit (OU) under the `Corp Root` directory tree on the primary domain controller. Modulated the object properties to nest the hybrid identity profile of `Tariq Malik` into the group's structural member directory database.
+
+#### Documentation Reference:
+![Local Active Directory Security Group Creation and Membership](ad_group_membership.jpg)
+
+---
+
+### 2. Cloud Directory Group Sync Audit
+* **Technical Objective:** Verify that the localized group structure and its nested internal member relationships map flawlessly into the cloud workspace.
+* **Execution:** Triggered an administrative delta sync cycle override using PowerShell. Following execution, authenticated into the Microsoft Entra admin center and executed an directory object lookup under the global Groups blade.
+* **Outcome Verification:** The tenant successfully discovered the `M365_Licensed_Users` security group object, automatically designating its structural metadata with the `On-premises sync enabled: Yes` attribute. Auditing the internal object schema confirmed that `Tariq Malik` was securely mapped as an inherited member, validating end-to-end hybrid group architecture synchronization.
+
+#### Documentation Reference:
+![Microsoft Entra ID Hybrid Group Membership Sync Verification](entra_group_verification.jpg)
 
 
 
