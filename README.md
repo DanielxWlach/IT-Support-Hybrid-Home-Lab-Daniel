@@ -463,4 +463,34 @@ Outcome Verification: The system confirms the presence of Tariq Malik. The platf
 
 
      
+## ⚙️ Phase 8: Post-Deployment Operations — Password Writeback Infrastructure Validation
 
+With the downstream object identity sync validated, operations focused on verifying bi-directional credential flows. This test ensures that administrative or user-driven authentication changes initiated in the cloud-native workspace are written back to the local on-premises Active Directory Domain Services (AD DS) database in real-time.
+
+### 1. Cloud-Initiated Administrative Password Reset
+* **Technical Objective:** Force an identity credential state change within the Microsoft Entra cloud control panel on a synchronized hybrid account.
+* **Execution:** Navigated to the Microsoft Entra admin center, localized the synchronized profile for `Tariq Malik`, and triggered an administrative password reset loop to generate a new cloud-side temporary authentication token.
+
+#### Documentation Reference:
+![Cloud Portal Administrative Password Reset Confirmation](cloud_pw_reset.jpg)
+
+---
+
+### 2. On-Premises Writeback Execution Verification
+* **Technical Objective:** Verify that the newly generated cloud authentication token was instantly intercepted by the local sync agent and committed to the local domain controller's database via a low-level query handshake.
+* **Execution:** Opened an administrative PowerShell console on the domain controller host node and executed two layers of verification. First, a secure credential object was constructed to echo the in-memory string. Second, a direct .NET LDAP binding handshake was initiated straight against the root domain database using the new credential set.
+* **Execution Commands:**
+```powershell
+
+```
+# 1. Verify string instantiation in system memory
+$SecPassword = ConvertTo-SecureString "Welcome2031_1!" -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential ("NextTechX\tmalik", $SecPassword)
+$Cred.GetNetworkCredential().Password
+
+# 2. Force an active LDAP binding handshake against the local AD database
+(New-Object System.DirectoryServices.DirectoryEntry("LDAP://NextTechX.local", "NextTechX\tmalik", "Welcome2031_1!")).NativeObject
+
+###Documentation Reference:
+
+![Local PowerShell Domain Controller Writeback Verification](local_writeback_validation.jpg)
