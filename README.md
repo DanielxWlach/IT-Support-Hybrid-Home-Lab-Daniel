@@ -492,4 +492,8 @@ $Cred.GetNetworkCredential().Password
 
 ![Local PowerShell Domain Controller Writeback Verification](local_writeback_validation.jpg)
 
-![Local PowerShell Domain Controller Writeback Verification](local_writeback_validation.jpg)
+
+
+
+
+
