@@ -419,5 +419,48 @@ With network communications baseline-validated, the actual directory synchroniza
 
 #### Documentation References:
 ![Cloud Portal Directory Verification Blade](Entra_Users_connected.jpg)
+
+
+## ⚙️ Phase 7: Post-Deployment Operations — Hybrid User Provisioning Lifecycle
+
+With the core identity sync topology fully validated, operational testing was conducted to simulate standard enterprise user provisioning pipelines. This phase confirms that modifications committed to the local on-premises directory cleanly replicate downstream to the cloud tenant space on demand.
+
+### 1. On-Premises Structure Organization & Object Creation
+* **Technical Objective:** Structure the local directory database using distinct administrative boundaries and provision a new corporate employee profile locally.
+* **Execution:** Created a new localized Organizational Unit (OU) named `Corp_Users` directly within the active root directory domain database (`NextTechX.local`). A new employee user object was generated inside this container:
+  * **Display Name:** Tariq Malik
+  * **User Principal Name (UPN):** tmalik@NextTechX.local
+  * **Security Parameter:** Enforced "User must change password at next logon" configuration rules to test down-stream credential translation behaviors.
+
+#### Documentation Reference:
+![On-Premises Active Directory User Object Provisioning](ad_user_creation.jpg)
+
+---
+
+### 2. Administrator-Driven Delta Replication Override
+* **Technical Objective:** Bypass the default 30-minute automated schedule cycle of the Microsoft Entra Connect Sync engine to push emergency changes to the cloud instantaneously.
+* **Execution:** Opened an administrative PowerShell console on the primary domain controller host node and explicitly invoked a Delta Synchronization policy sync request via the local scheduling engine.
+* **Execution Command:**
+```powershell
+Start-ADSyncSyncCycle -PolicyType Delta
+```
+
+###Documentation Reference:
+
+![Invoking Manual Delta Sync Via PowerShell](force_sync_powershell.jpg)
+
+
+### 3. Cloud Synchronization Verification Audit
+Technical Objective: Validate that the locally constructed object cleanly transformed into a valid, authenticated hybrid enterprise user inside the cloud tenant workspace.
+
+Execution: Logged into the modern Microsoft Entra admin center interface and performed a structural directory lookup across the global user index blade to verify the On-premises sync enabled: Yes attribute status.
+
+Outcome Verification: The system confirms the presence of Tariq Malik. The platform flags his administrative identity status profile with an explicit Directory synced: Yes attribute tag under his profile properties, proving that our on-premises identity lifecycle pipeline works seamlessly from end to end.
+
+###Documentation Reference:
+
+![Cloud Entra ID Workspace Hybrid Sync Verification](entra_sync_verification.jpg)
+
+
      
 
