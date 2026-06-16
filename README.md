@@ -537,3 +537,36 @@ Following the successful synchronization of hybrid group topologies, operations 
 ![license_inherited.jpg](license_inherited.jpg)
 
 
+## ⚙️ Phase 11: Post-Deployment Operations — Helpdesk Optimization via Self-Service Password Reset (SSPR)
+
+To mitigate operational overhead associated with credential management, identity operations advanced to provisioning Self-Service Password Reset (SSPR) workflows. This phase integrates our synchronized on-premises security group into the modern converged cloud recovery infrastructure, allowing end-users to securely update authentication states across both directories without service desk intervention.
+
+### 1. Modern Converged Authentication Policy Configuration
+* **Technical Objective:** Enable secure authentication recovery channels using the centralized Microsoft Entra auth methods policy engine to support a multi-layered verification strategy (App, SMS, and Email).
+* **Execution:** Navigated to the converged Authentication Methods policy infrastructure. Configured explicit registration baselines enabling SMS, Email One-Time Password (OTP), and Authenticator app capabilities, mapping the enforcement scope rules directly to support our synchronized identity boundary (`M365_Licensed_Users`).
+
+#### Documentation Reference:
+
+![password_registration](password_registration.jpg)
+
+![Email_authentication](Email_authentication.jpg)
+
+![Configuring Converged Authentication Policy Settings](converged_auth_policies.jpg)
+
+---
+
+### 2. End-User Registration Profile Simulation
+* **Technical Objective:** Validate that registration rules enforce authentication method enrollment upon subsequent user sign-ins and verify registration viability.
+* **Execution:** Initiated an isolated browser space to simulate a standard enterprise user authentication workflow for `Tariq Malik` via the My Sign-Ins portal. Upon processing the primary credential layer, the identity wrapper successfully enforced the Registration Campaign, mandating the enrollment of the primary Authenticator App channel alongside backup verification options.
+* **Outcome Verification:** The account successfully committed its verification data to the cloud directory tree, registering the Microsoft Authenticator app securely. Combined with our active on-premises Password Writeback engine, this completes the configuration loop—empowering the user to self-remediate account lockouts and write updates back to the local domain controller seamlessly.
+
+#### Documentation Reference:
+
+![sspr_properties_enabled.jpg](sspr_properties_enabled.jpg)
+
+![user_sspr_registration.jpg](user_sspr_registration.jpg)
+
+
+
+
+
