@@ -534,6 +534,6 @@ Following the successful synchronization of hybrid group topologies, operations 
 * **Outcome Verification:** The licensing engine successfully locks the product footprint via group assignment constraints when individual modifications are attempted. Note that due to asynchronous cloud replication patterns between the M365 Billing interface and Entra ID, object paths may temporarily reflect a `Direct` evaluation state while backend group evaluation runs finish processing.
 
 #### Documentation Reference:
-![1_2.jpg](1_2.jpg)
+![license_inherited.jpg](license_inherited.jpg)
 
 
