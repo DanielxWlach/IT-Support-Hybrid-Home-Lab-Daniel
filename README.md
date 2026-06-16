@@ -515,4 +515,25 @@ With bidirectional credential channels operating correctly, infrastructure opera
 ![Microsoft Entra ID Hybrid Group Membership Sync Verification](entra_group_verification.jpg)
 
 
+## ⚙️ Phase 10: Post-Deployment Operations — Group-Based License Automation
+
+Following the successful synchronization of hybrid group topologies, operations advanced to implementing automated identity lifecycle management. This phase establishes Group-Based Licensing rules, ensuring that group memberships managed natively on-premises dynamically drive cloud-native resource allocation and service provisioning.
+
+### 1. Cloud Product Assignment to Synchronized Directory Groups
+* **Technical Objective:** Map enterprise application and cloud service license allocations directly to synchronized security boundaries rather than individual user objects.
+* **Execution:** Authenticated into the Microsoft 365 Admin Center, navigated to the core Billing infrastructure, and assigned the Microsoft 365 Business Premium product subscription pool directly to the synchronized global security group `M365_Licensed_Users`. 
+
+#### Documentation Reference:
+![Group_License_Assignment](group_license_assignment.jpg)
+
+---
+
+### 2. Downstream User License Inheritance & Backend Processing Audit
+* **Technical Objective:** Validate that nested members within the synchronized security group automatically inherit target cloud licenses without direct administrative intervention.
+* **Execution:** Navigated back to the Microsoft Entra admin center directory user base to isolate the hybrid account profile for `Tariq Malik` and audit his active license assignment paths.
+* **Outcome Verification:** The licensing engine successfully locks the product footprint via group assignment constraints when individual modifications are attempted. Note that due to asynchronous cloud replication patterns between the M365 Billing interface and Entra ID, object paths may temporarily reflect a `Direct` evaluation state while backend group evaluation runs finish processing.
+
+#### Documentation Reference:
+![1_2.jpg](1_2.jpg)
+
 
