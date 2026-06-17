@@ -567,6 +567,25 @@ To mitigate operational overhead associated with credential management, identity
 ![user_sspr_registration.jpg](user_sspr_registration.jpg)
 
 
+## ⚙️ Phase 12: Post-Deployment Operations — Role-Based Access Control (RBAC) via Administrative Units
 
+To align infrastructure management with the Principle of Least Privilege (PoLP), hybrid operations advanced to implementing delegated cloud administration. This phase establishes an Administrative Unit (AU) to isolate regional directory elements and assigns scoped Helpdesk Administrator rights without exposing tenant-wide global administrative capabilities.
+
+### 1. Administrative Unit Provisioning and Structural Scoping
+* **Technical Objective:** Establish a virtual directory virtualization boundary to group regional hybrid user objects for localized administrative control.
+* **Execution:** Navigated to the Microsoft Entra admin center Roles & Admins tier to provision a new Administrative Unit designated as `Seoul_Staff_AU`. Upon creation, targeted the container's user object scope and populated it with the synchronized hybrid identity `Tariq Malik`.
+
+#### Documentation Reference:
+![1. Provisoning the Localized Administrative Unit](admin_unit_created.jpg)
+
+---
+
+### 2. Scoped Role Delegation for Support Personnel
+* **Technical Objective:** Delegate Helpdesk administrative permissions targeted exclusively to the scoped Administrative Unit container.
+* **Execution:** Accessed the internal RBAC matrix of the `Seoul_Staff_AU` container and selected the 'Helpdesk Administrator' role profile. Executed an assignment rule mapping the local technician identity `Wlach Daniel` to the role.
+* **Outcome Verification:** The identity engine confirms that the support profile holds active Helpdesk rights. Because this assignment is nested directly inside the AU rather than the tenant root, the technician can perform credential and profile remediation strictly for users inside this unit, preventing unauthorized access to root-level billing or tenant-wide configurations.
+
+#### Documentation Reference:
+![2. Verifying AU Helpdesk Role Assignment](helpdesk_role_delegation.jpg)
 
 
