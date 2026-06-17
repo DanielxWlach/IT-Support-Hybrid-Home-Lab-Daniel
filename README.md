@@ -588,4 +588,36 @@ To align infrastructure management with the Principle of Least Privilege (PoLP),
 #### Documentation Reference:
 ![2. Verifying AU Helpdesk Role Assignment](helpdesk_role_delegation.jpg)
 
+--
+
+## ⚙️ Phase 13: Post-Deployment Operations — Shared Mailboxes & Distribution Groups for Tiered IT Support
+
+To establish structural operational routing for enterprise incident resolution, operations advanced to deploying shared communications infrastructure within Microsoft 365. This phase configures centralized Shared Mailboxes for primary service desk ticket ingestion alongside scoped Distribution Groups to support Tier 2 engineering escalation pathways.
+
+### 1. Shared Mailbox Provisioning and Permission Delegation
+* **Technical Objective:** Establish a centralized, non-licensable mail repository to function as the core IT Support incoming queue, granting granular Send As and Full Access rights to helpdesk personnel.
+* **Execution:** Utilized the Microsoft 365 Admin Center to provision the `IT Support Queue` shared mailbox (`helpdesk@...`). Modified the access control lists (ACLs) to delegate authoritative Read and Manage (Full Access) and Send As permissions exclusively to the IT support technician profile `Wlach Daniel`.
+
+#### Documentation Reference:
+![1. Shared Mailbox Creation and Member Mapping](shared_mailbox_created.jpg)
+
+---
+
+### 2. Escalation Tier Distribution Infrastructure
+* **Technical Objective:** Construct an internal distribution boundary to broadcast escalated high-priority incident data to Tier 2 support engineering staff concurrently.
+* **Execution:** Navigated to the core Teams & Groups repository and generated a new global Mail-Enabled Distribution List designated as `IT_Tier2_Escalations`. Defined configuration attributes mapping ownership and subscription boundaries to support localized administrative control.
+
+#### Documentation Reference:
+![2. Provisioning the Tier 2 Escalation Distribution Boundary](distribution_group_created.jpg)
+
+---
+
+### 3. Integrated Operations and Workspace Verification
+* **Technical Objective:** Validate that delegated administrators can seamlessly map, mount, and interface with the shared support queue workspace via standard communication protocols.
+* **Execution:** Authenticated into Outlook on the Web as the designated technician and invoked the secondary mailbox mounting API targeting the shared queue UPN. 
+* **Outcome Verification:** The mail interface successfully spawned a distinct, fully integrated workspace instance for the `IT Support Queue` shared inbox without requiring a secondary independent identity login. This proves the validity of the underlying delegated permission architecture, confirming that helpdesk agents can natively triage tickets from a unified console.
+
+#### Documentation Reference:
+![3. Validating Technician Access to Shared Helpdesk Queue Workspace](helpdesk_mailbox_view.jpg)
+
 
