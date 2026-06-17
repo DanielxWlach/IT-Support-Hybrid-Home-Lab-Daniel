@@ -573,10 +573,10 @@ To align infrastructure management with the Principle of Least Privilege (PoLP),
 
 ### 1. Administrative Unit Provisioning and Structural Scoping
 * **Technical Objective:** Establish a virtual directory virtualization boundary to group regional hybrid user objects for localized administrative control.
-* **Execution:** Navigated to the Microsoft Entra admin center Roles & Admins tier to provision a new Administrative Unit designated as `Seoul_Staff_AU`. Upon creation, targeted the container's user object scope and populated it with the synchronized hybrid identity `Tariq Malik`.
+* **Execution:** Navigated to the Microsoft Entra admin center Roles & Admins tier to provision a new Administrative Unit designated as `Seoul_Staff_AU`. Upon creation, targeted the container's user object scope and populated it with the synchronized hybrid identity `Daniel WLach`.
 
 #### Documentation Reference:
-![1. Provisoning the Localized Administrative Unit](admin_unit_created.jpg)
+![1. Provisoning the Localized Administrative Unit](helpdesk_role_delegation.jpg)
 
 ---
 
