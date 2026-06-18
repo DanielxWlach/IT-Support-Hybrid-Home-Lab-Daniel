@@ -644,3 +644,27 @@ To safeguard corporate identity footprints against credential harvesting and mal
 ![3. Investigating Entra ID Sign-In Telemetry and Success Policy Receipts](signin_log_triage.jpg)
 
 
+## ⚙️ Phase 15: Post-Deployment Operations — Corporate Branding Customization & Helpdesk Support Disclosures
+
+To strengthen tenant anti-phishing defense vectors and optimize tier-structured incident ingestion, operations advanced to configuring custom tenant visualization profiles. This phase implements custom company branding parameters and publishes explicit directory-level helpdesk routing disclosures directly onto the cloud authentication runtime template.
+
+### 1. Enterprise Branding and Support Context Provisioning
+* **Technical Objective:** Embed business-specific directory headers and support instructions into the primary authentication page to validate site authenticity and decrease ticket triage latency.
+* **Execution:** Navigated to the Custom Branding infrastructure within the Microsoft Entra admin center. Modified the default tenant theme configuration by injecting an explicit string disclosure detailing the authoritative remediation paths (`helpdesk@nexttechx.local`) for remote workers experiencing credential lockouts or MFA sync faults.
+
+#### Documentation Reference:
+![1. Configuring Tenant Company Branding and Helpdesk Layout Text](tenant_branding_configured.jpg)
+
+---
+
+### 2. Phishing-Mitigation and Gateway Validation Tracking
+* **Technical Objective:** Verify that custom directory properties parse and display properly during an unauthenticated external session handshake.
+* **Execution:** Initialized a clear-session browser container targeting the Microsoft 365 Outlook endpoint. Inputted user profile identity strings mapping to `Tariq Malik` to force a tenant-specific gateway lookup.
+* **Outcome Verification:** The Entra login portal successfully intercepted the routing path, rendering the custom structural text. This baseline implementation provides an effective psychological firewall against external phishing clones (as spoofed endpoints fail to pull tenant-specific administrative text strings) while providing end-users immediate helpdesk contact paths when blocked at the identity gateway.
+
+#### Documentation Reference:
+![2. Verifying Branded Authentication Screen with Helpdesk Layout Text](branded_login_verification.jpg)
+
+
+
+
