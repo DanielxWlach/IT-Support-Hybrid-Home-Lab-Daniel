@@ -620,4 +620,27 @@ To establish structural operational routing for enterprise incident resolution, 
 #### Documentation Reference:
 ![3. Validating Technician Access to Shared Helpdesk Queue Workspace](helpdesk_mailbox_view.jpg)
 
+## ⚙️ Phase 14: Post-Deployment Operations — Conditional Access Enforcement & Sign-In Log Triage
+
+To safeguard corporate identity footprints against credential harvesting and malicious brute-force attempts, operations advanced to implementing adaptive access controls. This phase provisions a targeted Microsoft Entra Conditional Access policy and establishes standard operating procedures for helpdesk log analysis, sign-in triage, and tenant security model transitions.
+
+### 1. Conditional Access Policy Implementation & Security Defaults Deprecation
+* **Technical Objective:** Deploy an identity boundary rule forcing multi-factor authentication (MFA) across all cloud ecosystem services for synchronized directory objects, transitioning from unconfigurable tenant wide baselines to custom granular policies.
+* **Execution:** Navigated to Entra ID Conditional Access controls and provisioned policy `CA001: Require MFA for Synchronized Users`. Scoped enforcement directly to the synchronized global group container `M365_Licensed_Users`, while explicitly applying a safety exclusion rule for the root administrator identity `Wlach Daniel`. 
+* **Tenant Level Architectural Override:** Initial log testing revealed that custom Conditional Access rules were being bypassed by the pre-configured Microsoft default security posture. To pass control to our custom engineering stack, accessed tenant properties and explicitly disabled 'Security Defaults' (citing a transition to advanced Conditional Access architecture). The custom runtime environment state was then set to 'Report-only' to validate evaluation metrics safely.
+
+#### Documentation Reference:
+![1. Transitioning Tenant from Baseline Security Defaults to Custom Policy Evaluation Architecture](x.jpg)
+![2. Conditional Access Template Setup and Policy Deployment](conditional_access_policy.jpg)
+
+---
+
+### 2. Helpdesk Sign-In Audit and Policy Evaluation Verification
+* **Technical Objective:** Audit directory events using telemetry logs to trace identity verification workflows and confirm policy matching logic under the new custom security layout.
+* **Execution:** Accessed the centralized Monitoring & Health suite to isolate interactive sign-in events corresponding to user `Tariq Malik`. Interrogated the metadata wrapper, drilling down directly into the nested Conditional Access execution tab to confirm policy triggering.
+* **Outcome Verification:** The sign-in telemetry confirms that the custom policy engine successfully targeted the active authentication stream following the deprecation of tenant security defaults. The event logs document a definitive 'Success' status receipt for the custom rule wrapper, proving that the policy is correctly observing and evaluating connection attempts from the synchronized directory scope without introducing service delivery disruption.
+
+#### Documentation Reference:
+![3. Investigating Entra ID Sign-In Telemetry and Success Policy Receipts](signin_log_triage.jpg)
+
 
