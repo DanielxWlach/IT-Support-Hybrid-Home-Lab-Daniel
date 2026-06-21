@@ -666,5 +666,23 @@ To strengthen tenant anti-phishing defense vectors and optimize tier-structured 
 ![2. Verifying Branded Authentication Screen with Helpdesk Layout Text](branded_login_verification.jpg)
 
 
+## 🏢 Lab Documentation: Enterprise Identity & Group Management
+
+### 📋 Overview
+In this lab phase, I streamlined the Microsoft Entra ID and hybrid on-premises Active Directory environments to transition from a flat, unorganized directory to a structured, enterprise-ready hierarchy. By organizing users, separating location-based scopes, and introducing group-based access controls, the lab environment now mirrors a production corporate structure.
+
+---
+
+### ⚙️ Phase 16 Implementation & Fixes
+
+* **Departmental Structure**: Successfully created and populated explicit department groups (`HR_Department`, `Finance_Department`, and `Operations_Department`) to enforce proper Role-Based Access Control (RBAC).
+* **Hybrid & Cloud-Only Scopes**: 
+  * Isolated the **US Austin Staff** using a cloud-only architecture to accommodate bulk-imported cloud identities.
+  * Resolved hybrid synchronization limitations for the **Seoul Staff** by centralizing their identity container to a cloud-managed security group, allowing it to dynamically support both local AD-synced accounts and cloud-native users seamlessly.
+* **Directory Cleanup**: Audit trails were cleaned by eliminating duplicate staging accounts and onboarding fresh user profiles with designated local properties.
+* **Automated Licensing Architecture**: Standardized end-user onboarding by replacing messy, manual user-by-user licensing with **Group-Based Licensing**. Implemented a dedicated `M365_Licensed_Users_Cloud` security group to automatically assign Microsoft 365 licensing across the tenant cleanly.
+
+---
+
 
 
