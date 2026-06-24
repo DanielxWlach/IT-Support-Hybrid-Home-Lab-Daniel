@@ -696,7 +696,7 @@ In this lab phase, I streamlined the Microsoft Entra ID and hybrid on-premises A
 
 ---
 
-### 🔐 Lab Documentation: Password Policy & Authentication Security
+### 🔐 Phase 17: Lab Documentation: Password Policy & Authentication Security
 
 #### 📋 Overview
 In this phase, I implemented baseline identity security controls across the Microsoft 365 tenant. The objective was to move away from default, unmanaged credential lifecycles and establish an enterprise-standard password rotation and self-service framework that balances end-user autonomy with corporate security requirements.
