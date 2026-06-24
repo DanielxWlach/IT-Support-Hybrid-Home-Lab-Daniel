@@ -25,6 +25,7 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 15: Corporate Hierarchy Re-Engineering: Departmental Scopes & Cloud Security Group Topologies
 - [x] Phase 16: Enterprise Group-Based Licensing Architecture Implementation
 - [x] Phase 17: Tenant-Wide Security Baselines & Password Lifecycle Governance
+- [x] Phase 18: Cloud Device Registration & Automated Intune MDM Staging
 
 ### Phase 1 Implementation Evidence
    Here is the pristine Hyper-V virtualization host environment initialized on the host laptop before OS deployment:
@@ -710,6 +711,36 @@ In this phase, I implemented baseline identity security controls across the Micr
 
 #### 🎯 Key Takeaways
 This configuration secures the newly structured identity directory against automated credential-stuffing and brute-force attacks, demonstrating how to deploy foundational identity governance using standard Microsoft 365 administrative tools.
+
+---
+
+### 💻 Phase 18: Lab Documentation: Device Join & Automatic Enrollment Configuration
+
+#### 📋 Overview
+In this phase, I established the foundation for modern endpoint management within the corporate tenant. By configuring the integration between Microsoft Entra ID and Microsoft Intune, the environment is now structurally prepared to handle automated, out-of-the-box corporate device enrollment (MDM) without manual administrator intervention during deployment.
+
+#### ⚙️ Implementation & Technical Configurations
+* **Automated MDM Scope Provisioning**: Configured the **Microsoft Intune Mobility (MDM and MAM)** settings, upgrading the MDM user scope to **All** corporate accounts while disabling competing MAM settings. This configuration enforces immediate, automatic device enrollment into mobile device management upon cloud user registration.
+  
+  ![Intune Automatic Enrollment Scope](intune_automatic_enrollment.jpg)
+
+* **Tenant Device Controls**: Hardened the global cloud **Device Settings** by adjusting corporate compliance parameters. While maintaining open tenant-join permissions for onboarding verification, I throttled the **Maximum number of devices per user** from the default 50 down to **10** to mitigate unauthorized rogue endpoint footprint expansion.
+
+  ![Entra ID Device Join Settings](entra_device_settings.jpg)
+
+#### 🎯 Key Takeaways
+This configuration moves the lab toward complete modern endpoint lifecycle management, establishing the automated link required to push security baselines, software deployments, and compliance tracking rules out to corporate machines.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
