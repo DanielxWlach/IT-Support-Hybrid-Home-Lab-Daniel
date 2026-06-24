@@ -24,6 +24,7 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 14: Directory Cleanup, User Audit Trails, & Duplicate Account Remediation
 - [x] Phase 15: Corporate Hierarchy Re-Engineering: Departmental Scopes & Cloud Security Group Topologies
 - [x] Phase 16: Enterprise Group-Based Licensing Architecture Implementation
+- [x] Phase 17: Tenant-Wide Security Baselines & Password Lifecycle Governance
 
 ### Phase 1 Implementation Evidence
    Here is the pristine Hyper-V virtualization host environment initialized on the host laptop before OS deployment:
@@ -694,6 +695,21 @@ In this lab phase, I streamlined the Microsoft Entra ID and hybrid on-premises A
 * **Automated Licensing Architecture**: Standardized end-user onboarding by replacing messy, manual user-by-user licensing with **Group-Based Licensing**. Implemented a dedicated `M365_Licensed_Users_Cloud` security group to automatically assign Microsoft 365 licensing across the tenant cleanly.
 
 ---
+
+### 🔐 Lab Documentation: Password Policy & Authentication Security
+
+#### 📋 Overview
+In this phase, I implemented baseline identity security controls across the Microsoft 365 tenant. The objective was to move away from default, unmanaged credential lifecycles and establish an enterprise-standard password rotation and self-service framework that balances end-user autonomy with corporate security requirements.
+
+#### ⚙️ Implementation & Technical Configurations
+* **Password Expiration Governance**: Configured the global organizational security baseline via the Microsoft 365 Admin Center to enforce a **90-day password expiration lifecycle** across all cloud-managed domains, shifting the environment away from unmanaged permanent credentials.
+* **SSPR Hardening (Security Questions)**: Configured and enforced a tenant-wide Self-Service Password Reset (SSPR) validation baseline using security questions within Microsoft Entra ID. Standardized the policy to require users to register **5 predefined security questions**, requiring a minimum of **3 correct answers** to successfully execute a self-service password reset.
+* **Conditional Access vs. Security Defaults**: Audited tenant-wide properties and verified that basic Security Defaults are disabled. This is by design, as the tenant utilizes advanced, granular **Conditional Access Policies** to enforce Multi-Factor Authentication (MFA) and access controls, overriding the basic all-or-nothing Security Defaults tier.
+
+![Password_expiration_policy](password_expiration_policy.jpg)
+
+#### 🎯 Key Takeaways
+This configuration secures the newly structured identity directory against automated credential-stuffing and brute-force attacks, demonstrating how to deploy foundational identity governance using standard Microsoft 365 administrative tools.
 
 
 
