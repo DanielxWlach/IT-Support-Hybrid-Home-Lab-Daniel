@@ -26,6 +26,7 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 16: Enterprise Group-Based Licensing Architecture Implementation
 - [x] Phase 17: Tenant-Wide Security Baselines & Password Lifecycle Governance
 - [x] Phase 18: Cloud Device Registration & Automated Intune MDM Staging
+- [x] Phase 19: Role-Based Access Control (RBAC) & Delegated Helpdesk Administration
 
 ### Phase 1 Implementation Evidence
    Here is the pristine Hyper-V virtualization host environment initialized on the host laptop before OS deployment:
@@ -733,7 +734,22 @@ This configuration moves the lab toward complete modern endpoint lifecycle manag
 
 
 
+### 👥 Phase 19: Lab Documentation: Least Privilege Role Delegation & Testing
 
+#### 📋 Overview
+In this phase, I implemented Role-Based Access Control (RBAC) within the Microsoft Entra tenant to enforce the Principle of Least Privilege (PoLP). Instead of relying on insecure, tenant-wide Global Administrator permissions for day-to-day operations, I isolated administrative boundaries by provisioning scoped helpdesk privileges to a tier-1 support account and validating access controls.
+
+#### ⚙️ Implementation & Technical Configurations
+* **Administrative Role Delegation**: Leveraged the Entra ID **Roles & Administrators** engine to explicitly assign the **Helpdesk Administrator** directory role to a designated IT support user account, granting them targeted operational rights.
+  
+  ![Helpdesk Admin Role Assignment](rbac_role_assignment.jpg)
+
+* **Boundary Validation & Least Privilege Testing**: Authenticated into the directory using the restricted tier-1 support account to map out permissions. Verified that administrative capabilities were limited exclusively to helpdesk tasks (such as password resets and user troubleshooting), while access to high-impact directories—such as billing infrastructure and Conditional Access policy nodes—was restricted by the system.
+
+  ![RBAC Access Denied Restriction Test](rbac_least_privilege_test.jpg)
+
+#### 🎯 Key Takeaways
+This lab phase demonstrates a critical security baseline for identity environments: minimizing an organization's blast radius by ensuring IT personnel are granted only the minimum level of directory access required to fulfill their specific daily ticketing workflows.
 
 
 
