@@ -711,8 +711,7 @@ In this phase, I implemented baseline identity security controls across the Micr
 
 ![Password_expiration_policy](password_expiration_policy.jpg)
 
-#### 🎯 Key Takeaways
-This configuration secures the newly structured identity directory against automated credential-stuffing and brute-force attacks, demonstrating how to deploy foundational identity governance using standard Microsoft 365 administrative tools.
+
 
 ---
 
@@ -730,8 +729,6 @@ In this phase, I established the foundation for modern endpoint management withi
 
   ![Entra ID Device Join Settings](entra_device_settings.jpg)
 
-#### 🎯 Key Takeaways
-This configuration moves the lab toward complete modern endpoint lifecycle management, establishing the automated link required to push security baselines, software deployments, and compliance tracking rules out to corporate machines.
 
 
 
@@ -749,10 +746,6 @@ In this phase, I implemented Role-Based Access Control (RBAC) within the Microso
 
   ![RBAC Access Denied Restriction Test](rbac_least_privilege_test.jpg)
 
-#### 🎯 Key Takeaways
-This lab phase demonstrates a critical security baseline for identity environments: minimizing an organization's blast radius by ensuring IT personnel are granted only the minimum level of directory access required to fulfill their specific daily ticketing workflows.
-
-
 
 ### 🌐 Phase 20: Lab Documentation: Internal Name Resolution Triage
 
@@ -767,11 +760,6 @@ In this phase, I simulated a common enterprise desktop support scenario: an endp
 * **Adapter Remediation & Cache Clearing**: Reconfigured the network interface properties to route requests back to the local Windows Server 2022 Domain Controller IP. Executed a complete client-side flush via `ipconfig /flushdns` to wipe corrupted negative cache entries, verifying resolution health via successful `nslookup` validation checks.
 
   ![Successful DNS Cache Remediation](dns_remediation_success.jpg)
-
-#### 🎯 Key Takeaways
-This exercise models fundamental helpdesk troubleshooting principles for hybrid setups, emphasizing that local directory availability relies heavily on pristine client-side DNS routing pointing explicitly to the network's Domain Controllers rather than external gateways.
-
-
 
 
 
