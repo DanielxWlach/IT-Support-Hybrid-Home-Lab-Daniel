@@ -27,6 +27,7 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 17: Tenant-Wide Security Baselines & Password Lifecycle Governance
 - [x] Phase 18: Cloud Device Registration & Automated Intune MDM Staging
 - [x] Phase 19: Role-Based Access Control (RBAC) & Delegated Helpdesk Administration
+- [x] Phase 20: Hybrid Network Troubleshooting & Local DNS Cache Remediation
 
 ### Phase 1 Implementation Evidence
    Here is the pristine Hyper-V virtualization host environment initialized on the host laptop before OS deployment:
@@ -753,7 +754,22 @@ This lab phase demonstrates a critical security baseline for identity environmen
 
 
 
+### 🌐 Phase 20: Lab Documentation: Internal Name Resolution Triage
 
+#### 📋 Overview
+In this phase, I simulated a common enterprise desktop support scenario: an endpoint losing access to local domain infrastructure due to a DNS configuration drift. The objective was to utilize advanced command-line diagnostic utilities to identify name resolution issues and execute proper cache-purging remediation workflows.
+
+#### ⚙️ Implementation & Technical Configurations
+* **Failure Simulation & Triage**: Diverted the Windows 11 client's adapter configurations to point to an external public resolver (`8.8.8.8`), dropping connection to the internal Active Directory environment. Utilized `ping` and `nslookup` patterns to isolate why internal directory resources (`nexttechx.local`) suddenly became unreachable.
+  
+  ![DNS Name Resolution Failure Trace](dns_triage_failure.jpg)
+
+* **Adapter Remediation & Cache Clearing**: Reconfigured the network interface properties to route requests back to the local Windows Server 2022 Domain Controller IP. Executed a complete client-side flush via `ipconfig /flushdns` to wipe corrupted negative cache entries, verifying resolution health via successful `nslookup` validation checks.
+
+  ![Successful DNS Cache Remediation](dns_remediation_success.jpg)
+
+#### 🎯 Key Takeaways
+This exercise models fundamental helpdesk troubleshooting principles for hybrid setups, emphasizing that local directory availability relies heavily on pristine client-side DNS routing pointing explicitly to the network's Domain Controllers rather than external gateways.
 
 
 
