@@ -28,6 +28,7 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 18: Cloud Device Registration & Automated Intune MDM Staging
 - [x] Phase 19: Role-Based Access Control (RBAC) & Delegated Helpdesk Administration
 - [x] Phase 20: Hybrid Network Troubleshooting & Local DNS Cache Remediation
+- [x] Phase 21: Endpoint Diagnostics & Custom BSOD Crash Dump Analysis
 
 ### Phase 1 Implementation Evidence
    Here is the pristine Hyper-V virtualization host environment initialized on the host laptop before OS deployment:
@@ -760,6 +761,32 @@ In this phase, I simulated a common enterprise desktop support scenario: an endp
 * **Adapter Remediation & Cache Clearing**: Reconfigured the network interface properties to route requests back to the local Windows Server 2022 Domain Controller IP. Executed a complete client-side flush via `ipconfig /flushdns` to wipe corrupted negative cache entries, verifying resolution health via successful `nslookup` validation checks.
 
   ![Successful DNS Cache Remediation](dns_remediation_success.jpg)
+
+
+
+### 💻 Lab Documentation: Windows Kernel Dump Triage
+
+#### 📋 Overview
+In this phase, I stepped into advanced desktop support and forensic triage operations by initiating a manual system panic to analyze a Windows kernel memory dump (`.dmp`). Rather than relying on standard external samples, I configured the local operating system to retain full memory fault snapshots, captured a live Blue Screen of Death (BSOD), and pinpointed the exact driver module responsible for system instability.
+
+#### ⚙️ Implementation & Technical Configurations
+
+* **Dump Architecture & Crash Configuration**: Modified the Windows Startup and Recovery parameters to guarantee automated kernel-state preservation. De-selected the default automatic reboot option to halt the system state during an active crash kernel cycle, ensuring the integrity of physical-to-virtual storage memory commits.
+  
+  ![Configuring System Recovery Parameters](blue_screen_creation.jpg)
+
+* **Live Crash Execution**: Triggered a controlled kernel exception fault within the test environment. Capturing the resulting live bugcheck execution code highlighted a localized memory fault (`DRIVER_IRQL_NOT_LESS_OR_EQUAL`) tied directly to active driver threads.
+
+  ![Live System Exception Trace](blue_screen.jpg)
+
+* **Forensic Stack Analysis**: Deployed the BlueScreenView log parsing utility to parse the generated memory snapshot files (`.dmp`). Inspected the memory address lines within the call stack to successfully isolate the root driver violation, targeting the precise culprit (`myfault.sys`) and its execution footprint (`ntoskrnl.exe`).
+
+  ![BSOD Stack Trace Isolation](bsod_dump_analysis.jpg)
+
+* **Post-Crash Baseline Remediation**: Initiated command-line integrity repairs to verify that system file hashes weren't compromised during the forced crash cycle. Completed a Deployment Image Servicing and Management (`DISM`) image health assessment followed by a full System File Checker (`sfc /scannow`) cycle to secure a pristine, error-free system state.
+
+  ![SFC Integrity Verification Scan](bsod_sfc_remediation.jpg)
+
 
 
 
