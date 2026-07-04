@@ -787,7 +787,27 @@ In this phase, I stepped into advanced desktop support and forensic triage opera
 
   ![SFC Integrity Verification Scan](bsod_sfc_remediation.jpg)
 
+- [x] Phase 22: Enterprise Messaging Operations & User Lifecycle Triage
 
+### 💻 Lab Documentation: Exchange Online Mail Flow Continuity
+
+#### 📋 Overview
+In this phase, I managed an emergency user lifecycle ticket involving unexpected employee absences. To ensure business continuity and zero communication gaps, I implemented emergency Out-of-Office (OOF) automatic replies and mail forwarding redirections across two target accounts using both graphical and programmatic administration methods.
+
+#### ⚙️ Implementation & Technical Configurations
+* **Administrative Mailflow Redirection (GUI)**: Utilized the Exchange Admin Center to select Ada Wong's mailbox, enabling an internal forward directly to Daniel Wlach and establishing an automated corporate hand-off reply for all inbound senders.
+
+  ![Exchange Admin Center Mail Forwarding Configuration](m365_oof_forwarding_gui.jpg)
+  ![Exchange Admin Center Automatic Replies Configuration](mailboxes.jpg)
+
+* **Automated Messaging Auditing (PowerShell)**: Leveraged the `ExchangeOnlineManagement` REST API module in an elevated console session to bypass GUI constraints for Tarik Malik's mailbox. Initialized dependencies via NuGet, authenticated against the cloud tenant, and executed administrative overrides to apply OOF configurations and map back-end forwarding rules.
+
+  ![Exchange Online Management Module Installation](powershell1.jpg)
+  ![Exchange Online Tenant Authentication Connection](powershell2.jpg)
+
+* **Validation & Compliance Logs**: Ran verification queries using `Get-MailboxAutoReplyConfiguration` and `Get-Mailbox` to audit the live server properties. Confirmed that `AutoReplyState` is live, `ForwardingSmtpAddress` routes to the active coverage account, and `DeliverToMailboxAndForward` is verified as true to preserve local compliance records.
+
+  ![PowerShell Verification Queries and Attribute Audit](powershell3.jpg)
 
 
 
