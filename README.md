@@ -29,6 +29,8 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 19: Role-Based Access Control (RBAC) & Delegated Helpdesk Administration
 - [x] Phase 20: Hybrid Network Troubleshooting & Local DNS Cache Remediation
 - [x] Phase 21: Endpoint Diagnostics & Custom BSOD Crash Dump Analysis
+- [x] Phase 22: Enterprise Messaging Operations & User Lifecycle Triage
+- [x] Phase 23: User Offboarding & Basic Security Triage
 
 ### Phase 1 Implementation Evidence
    Here is the pristine Hyper-V virtualization host environment initialized on the host laptop before OS deployment:
@@ -808,6 +810,34 @@ In this phase, I managed an emergency user lifecycle ticket involving unexpected
 * **Validation & Compliance Logs**: Ran verification queries using `Get-MailboxAutoReplyConfiguration` and `Get-Mailbox` to audit the live server properties. Confirmed that `AutoReplyState` is live, `ForwardingSmtpAddress` routes to the active coverage account, and `DeliverToMailboxAndForward` is verified as true to preserve local compliance records.
 
   ![PowerShell Verification Queries and Attribute Audit](powershell3.jpg)
+
+
+
+## 🔐 Phase 23: Lab Documentation: Identity Lifecycle & Account Termination Triage
+
+#### 📋 Overview
+In this phase, I executed a standard Tier 1/2 help desk offboarding protocol for a terminated employee Ada Wong). The core focus of this lab was implementing rapid access revocation to secure corporate assets, followed by tenant resource optimization to preserve data compliance while eliminating unnecessary licensing costs.
+
+#### ⚙️ Implementation & Technical Configurations
+* **Session Revocation & Password Invalidation**: Initiated an emergency access cutoff within the Microsoft 365 Admin Center by executing a global token revocation, forcing Ada Wong out of all active web, mobile, and desktop sessions. Simultaneously forced an administrative password override to eliminate unauthorized entry hooks.
+
+  ![Session Revocation and Password Reset Confirmation](offboarding_auth_reset.jpg)
+
+* **Account Sign-In Lockdown**: Enforced a strict administrative block on the Azure AD / Entra ID identity layer, transitioning the account status to a locked state to drop all inbound authentication attempts at the tenant perimeter.
+
+  ![Administrative Sign-In Block Implemented](offboarding_signin_blocked.jpg)
+
+* **Mailbox Conversion & License Reclamation**: Navigated to the Exchange Admin Center to convert the traditional user mailbox into a free Shared Mailbox asset. This preservation method keeps the underlying historical mail data accessible for management compliance lookup while safely allowing the deletion of the paid M365 license.
+
+  ![Exchange Mailbox Converted to Shared Resource](offboarding_mailbox_conversion.jpg)
+
+#### 🚀 Technical Outcomes
+* **Tenant Security Hardening**: Immediate mitigations successfully isolated the identity without damaging historical data trails.
+* **Cost Optimization**: Reclaiming the user license ensures the enterprise resource pool is optimized, dropping active subscription costs for an inactive seat.
+
+
+
+
 
 
 
