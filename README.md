@@ -31,6 +31,7 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 21: Endpoint Diagnostics & Custom BSOD Crash Dump Analysis
 - [x] Phase 22: Enterprise Messaging Operations & User Lifecycle Triage
 - [x] Phase 23: User Offboarding & Basic Security Triage
+- [x] Phase 24: Mailbox Delegation & Access Management
 
 ### Phase 1 Implementation Evidence
    Here is the pristine Hyper-V virtualization host environment initialized on the host laptop before OS deployment:
@@ -835,7 +836,23 @@ In this phase, I executed a standard Tier 1/2 help desk offboarding protocol for
 * **Tenant Security Hardening**: Immediate mitigations successfully isolated the identity without damaging historical data trails.
 * **Cost Optimization**: Reclaiming the user license ensures the enterprise resource pool is optimized, dropping active subscription costs for an inactive seat.
 
+### 📬 Phase 24: Lab Documentation: Cross-Mailbox Delegation & Post-Offboarding Access Governance
 
+#### 📋 Overview
+Following the successful termination and conversion of a legacy user account (Ada Wong), I executed the final phase of the lifecycle ticket by mapping secure mailbox delegation permissions. This phase grants an active team coverage resource (Daniel Wlach) full operational visibility over historical and inbound communication channels to prevent information gaps.
+
+#### ⚙️ Implementation & Technical Configurations
+* **Read and Manage (Full Access) Assignment**: Configured explicit backend mailbox mapping within the Exchange Admin Center delegation layers. Assigning this property allows the platform to automatically attach Ada Wong's mailbox framework into Daniel Wlach's desktop and web Outlook profiles without exposing individual credentials.
+
+  ![Assigning Read and Manage Permissions to Ada Wong](delegation_full_access.jpg)
+
+* **Send As Mail-Flow Delegation**: Provisioned administrative security rights allowing Daniel Wlach to legally impersonate the origin mailbox identity on outbound messaging queues. This configuration guarantees that any external client threads replied to by the coverage resource seamlessly maintain the original `awong@...` namespace.
+
+  ![Assigning Send As Permission Controls](delegation_send_as.jpg)
+
+#### 🚀 Technical Outcomes
+* **Business Continuity Preserved**: The active department resource can safely monitor and respond to external stakeholders, protecting corporate delivery workflows.
+* **Least Privilege Access Control**: Permissions were granted strictly at the mailbox application layer rather than sharing system passwords, keeping the tenant completely compliant with identity security baselines.
 
 
 
