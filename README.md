@@ -871,3 +871,24 @@ To finalize the identity lifecycle management thread for a separated user asset 
 * **Identity Boundary Isolation**: Confirms that although the mailbox data remains fully intact for historical searching, the user entry point has successfully completed its lifecycle phase down to public-facing indicators.
 
 
+### ⚡Phase 26: Lab Documentation: Multi-Attribute Access Control (ABAC) via Dynamic Entra ID Groups
+
+#### 📋 Overview
+To further automate identity lifecycle management and scale cross-departmental collaboration, I deployed a multi-attribute dynamic security group in Microsoft Entra ID. This allows the system to evaluate separate business units using advanced logical operator queries, streamlining resource access for teams with shared corporate responsibilities.
+
+#### ⚙️ Implementation & Technical Configurations
+* **Logical Operator Query Compiling**: Provisioned a cloud security group using the compound logical statement filter `(user.department -eq "Legal") -or (user.department -eq "Compliance")`. This configuration instructs Microsoft Entra's identity matching framework to actively poll the directory for updates across multiple distinct business fields.
+
+  ![Building the Multi-Department Dynamic Group Query](dynamic_group_rule.jpg)
+
+* **Automated Sync Evaluation**: Verified the processing engine. By assigning a test user's department attribute to match the query parameters, the Entra identity evaluation cycle successfully calculated the policy change and automatically populated the group roster without manual intervention.
+
+
+  ![Added_Legal_to_user](add_legal.jpg)
+  ![Verified Automated Multi-Department Sync Outputs](dynamic_group_membership.jpg)
+
+#### 🚀 Technical Outcomes
+* **Advanced Multi-Department Consolidation**: Merged cross-functional legal and auditing domains into a single managed data tier, allowing immediate deployment of organization-wide compliance boundaries.
+* **Automated Least Privilege Lifecycles**: Any workforce asset hired into or transferred between the Legal or Compliance spaces gains or loses permissions automatically based purely on directory metadata changes.
+
+
