@@ -855,6 +855,19 @@ Following the successful termination and conversion of a legacy user account (Ad
 * **Least Privilege Access Control**: Permissions were granted strictly at the mailbox application layer rather than sharing system passwords, keeping the tenant completely compliant with identity security baselines.
 
 
+### ✉️ Phase 25: Lab Documentation: Post-Separation Mail-Flow Controls & Auto-Response Routing
 
+#### 📋 Overview
+To finalize the identity lifecycle management thread for a separated user asset (Ada Wong), I configured tenant-level mail-flow auto-responders within the Exchange Admin Center. This standard help desk intervention safeguards client relations by programmatically intercepting incoming traffic and redirecting external and internal stakeholders to the designated coverage resource.
+
+#### ⚙️ Implementation & Technical Configurations
+* **Automated Boundary Messaging**: Provisioned a global out-of-office message loop across both the internal tenant directory boundary and external public-facing mx queues. 
+* **Dynamic Vendor Interception**: Enforced immediate auto-reply routing rules on the origin namespace without requiring an active mailbox interactive logon session, keeping the legacy identity dead-ended while guiding live communication toward active operational queues.
+
+  ![Configuring Administrative Out-of-Office Mail Routing](offboarding_auto_reply.jpg)
+
+#### 🚀 Technical Outcomes
+* **Zero Drop Communication**: Legacy contacts are immediately provided a validated path of escalations, preventing communication black holes.
+* **Identity Boundary Isolation**: Confirms that although the mailbox data remains fully intact for historical searching, the user entry point has successfully completed its lifecycle phase down to public-facing indicators.
 
 
