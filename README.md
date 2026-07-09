@@ -32,6 +32,9 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 22: Enterprise Messaging Operations & User Lifecycle Triage
 - [x] Phase 23: User Offboarding & Basic Security Triage
 - [x] Phase 24: Mailbox Delegation & Access Management
+- [x] Phase 25: Automated Mail-Flow Coverages (Out-of-Office Policy)
+- [x] Phase 26: Logical Operators in Identity Governance (Legal & Compliance)
+- [x] Phase 27: Self-Service Identity Lifecycle Management (SSPR)
 
 ### Phase 1 Implementation Evidence
    Here is the pristine Hyper-V virtualization host environment initialized on the host laptop before OS deployment:
@@ -892,3 +895,17 @@ To further automate identity lifecycle management and scale cross-departmental c
 * **Automated Least Privilege Lifecycles**: Any workforce asset hired into or transferred between the Legal or Compliance spaces gains or loses permissions automatically based purely on directory metadata changes.
 
 
+### 🔑 Phase 27: Lab Documentation: Enforcing Self-Service Password Reset (SSPR) Baselines
+
+#### 📋 Overview
+To mitigate high-volume Tier 1 service desk ticket queues and enhance operational scaling, I deployed a tenant-wide Self-Service Password Reset (SSPR) framework in Microsoft Entra ID. This configuration safely delegates identity verification capabilities back to the end-users, ensuring unmanaged lockouts can be resolved autonomously without technical staff intervention.
+
+#### ⚙️ Implementation & Technical Configurations
+* **SSPR Scope Allocation**: Enabled global registration enforcement across the directory infrastructure, requiring mandatory security method registration upon the next active identity logon handshake.
+* **Multi-Factor Reset Gates**: Conditioned the password recovery engine to accept validated single-token challenges, establishing mobile application push notifications and out-of-band alternate email routing as approved cryptographic verification tokens.
+
+  ![Configuring SSPR Tenant Verification Methods](sspr_auth_methods.jpg)
+
+#### 🚀 Technical Outcomes
+* **Ticket Queue Optimization**: Drastically drops standard password maintenance ticket overhead, allowing support personnel to focus on higher-tier infrastructure projects.
+* **Hardened Identity Recovery**: Replaces insecure manual phone verification or temporary clear-text passwords with automated, multi-factor authorization checkpoints managed entirely by the Entra identity protection subsystem.
