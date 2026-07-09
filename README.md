@@ -925,3 +925,20 @@ To establish foundational proficiency in modern identity triage and security mon
 * **Error Code Deciphering**: Isolated the explicit error code (e.g., `50126`), instantly confirming an invalid credential state without relying on subjective end-user symptoms.
 * **Root Cause Verification**: Audited associated sign-in metadata parameters including the client application, incoming IP mapping, and browser user-agent string—skills critical for spotting malicious brute-force attempts and identifying conditional access policy gaps.
 
+### 📊 Phase 29: Lab Documentation: Tenant-Wide Security Auditing & Proactive Operations
+
+#### 📋 Overview
+To implement proactive security operations within the enterprise sandbox, I executed a tenant-wide "Daily Status Check" utilizing Microsoft Entra Identity Protection and Microsoft 365 Admin Center reporting engine metrics. Reviewing high-level environmental telemetry allows engineers to spot brute-force trends, anomalous access spikes, and account compromises before they manifest as critical help desk outages.
+
+#### ⚙️ Implementation & Technical Configurations
+* **Identity Protection Analysis**: Audited global risk boundaries within the Entra security center, validating active threat counters across user objects, session risk flags, and conditional policy gaps.
+* **Workload Usage Assessment**: Navigated cross-platform usage analytics grids to baseline normal system traffic profiles across Exchange and SharePoint/OneDrive vectors, establishing a behavioral reference model for the sandbox.
+
+  ![Reviewing Tenant Security and Infrastructure Metrics](tenant_security_dashboard.jpg)
+  ![Reviewing Usage in Reports Admin Center](admin_reports_usage.jpg)
+
+#### 🚀 Technical Outcomes
+* **Proactive Security Gating**: Shifts technical workflow from a reactive, ticket-driven model to a proactive, defensive security posture.
+* **Environmental Integrity Verification**: Confirms that backend infrastructure operations remain within safe baselines, providing data-driven verification of overall tenant platform stability.
+
+
