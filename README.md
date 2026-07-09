@@ -909,3 +909,19 @@ To mitigate high-volume Tier 1 service desk ticket queues and enhance operationa
 #### 🚀 Technical Outcomes
 * **Ticket Queue Optimization**: Drastically drops standard password maintenance ticket overhead, allowing support personnel to focus on higher-tier infrastructure projects.
 * **Hardened Identity Recovery**: Replaces insecure manual phone verification or temporary clear-text passwords with automated, multi-factor authorization checkpoints managed entirely by the Entra identity protection subsystem.
+
+### 🔍 Phase 28: Lab Documentation: Tier 1/2 Incident Response & Sign-In Log Diagnostics
+
+#### 📋 Overview
+To establish foundational proficiency in modern identity triage and security monitoring, I simulated an authentication failure event and conducted an end-to-end log analysis within the Microsoft Entra ID monitoring architecture. Mastering log parsing allows me to diagnose real-world access issues instantly based on explicit cryptographic error codes rather than user descriptions.
+
+#### ⚙️ Implementation & Technical Configurations
+* **Authentication Event Generation**: Executed an intentional credential validation failure under a controlled test identity (Tarik Malik) to generate a hard failure footprint within the tenant's authentication boundary.
+* **Telemetry Interception**: Navigated to Entra Monitoring & Health to isolate the resulting event correlation token. Investigated the raw JSON metadata and panel parameters to verify the telemetry flow.
+
+  ![Analyzing Tenant Sign-In Logs and Error Codes](failed_signin_log.jpg)
+
+#### 🚀 Technical Outcomes
+* **Error Code Deciphering**: Isolated the explicit error code (e.g., `50126`), instantly confirming an invalid credential state without relying on subjective end-user symptoms.
+* **Root Cause Verification**: Audited associated sign-in metadata parameters including the client application, incoming IP mapping, and browser user-agent string—skills critical for spotting malicious brute-force attempts and identifying conditional access policy gaps.
+
