@@ -35,6 +35,10 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 25: Automated Mail-Flow Coverages (Out-of-Office Policy)
 - [x] Phase 26: Logical Operators in Identity Governance (Legal & Compliance)
 - [x] Phase 27: Self-Service Identity Lifecycle Management (SSPR)
+- [x] Phase 28: Diagnostic Identity Auditing & Sign-In Log Analysis
+- [x] Phase 29: Environment Auditing & Tenant Security Health Baseline
+- [x] Phase 30: Mail-Enabled External Contacts & Global Address List (GAL) Integration
+- [x] Phase 31: Role-Based Access Control (RBAC) & Identity Lifecycle Promotion
 
 ### Phase 1 Implementation Evidence
    Here is the pristine Hyper-V virtualization host environment initialized on the host laptop before OS deployment:
@@ -957,6 +961,24 @@ To streamline cross-organization communication boundaries and eliminate address-
 #### 🚀 Technical Outcomes
 * **Directory Governance Optimization**: Allows users to find external points of contact natively within Outlook, preventing typographical delivery failures and boosting workflow efficiency.
 * **Zero-License Resource Scoping**: Safely introduces external stakeholder endpoints to the organizational directory without provisioning costly interactive user licenses or allocating cloud mailbox storage slots.
+
+
+### 🔐Phase 31: Lab Documentation: Privileged Access Governance via Scoped Directory Roles
+
+#### 📋 Overview
+To support an internal workforce promotion cycle for Tarik Malik, I executed an end-to-end identity modification and Role-Based Access Control (RBAC) alignment procedure in Microsoft Entra ID. Adhering strictly to the security principle of "Least Privilege," I mapped out elevated permissions to grant administrative clearance for his new technical scope without exposing the tenant to global domain compromise.
+
+#### ⚙️ Implementation & Technical Configurations
+* **Directory Profile Re-Profiling**: Modified target organizational metadata fields, transitioning the underlying user identity structure to the 'IT Operations' department with an active 'IT Support Technician' classification.
+* **Granular RBAC Mapping**: Assigned the cloud-native 'Helpdesk Administrator' role profile to the updated user account object, allowing execution of password management workflows and basic service desk monitoring.
+
+  ![Changing Personal Information based on Promotion](promotion_user.jpg)
+  ![Assigning Least-Privilege RBAC Helpdesk Roles](rbac_role_assignment.jpg)
+
+
+#### 🚀 Technical Outcomes
+* **Least Privilege Enforcement**: Safely isolated privileged operational commands to standard service desk parameters, ensuring the user cannot accidentally modify tenant-wide enterprise applications or alter root infrastructure architecture.
+* **Audit-Ready Asset Allocation**: Ensures all future administrative actions taken by this support profile are tied directly to an updated corporate title and tracking path within the global tenant audit stream.
 
 
 
