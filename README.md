@@ -998,4 +998,27 @@ To enforce corporate compliance frameworks and optimize user-facing technical su
 * **Phishing Mitigation Baseline**: Presenting distinct, company-approved visual profiles at the pre-login gate helps train end-users to distinguish the real corporate authentication portal from malicious external lookalikes.
 * **Streamlined Support Access**: Embeds direct help desk escalations natively within the standard Microsoft 365 header architecture, lowering operational barriers for end-users seeking technical service assistance.
 
+### 📱 Phase 33: Lab Documentation: Enabling Mobile Mail Access & Checking Device Profiles
+
+#### 📋 Overview
+In this phase, I verified how to manage mobile access for user mailboxes and how to audit the devices that connect to the tenant. This reflects a typical help desk scenario where a user needs to set up email on their phone, or a technician needs to check if a device successfully registered in the cloud.
+
+#### ⚙️ What I Did
+* **Enabled Mobile Access**: Navigated to the user mailbox properties and opened the **Manage email apps** panel. Checked the box for **Mobile (Exchange ActiveSync)** to guarantee the user has permission to sync their mail, calendar, and contacts to a mobile device.
+
+  ![Checking the Mobile Exchange ActiveSync permission](mobile1_2.jpg)
+
+* **Audited Registered Devices**: Opened the Microsoft Entra ID device directory to search for any registered smartphones. While no physical mobile phone has logged into this test account yet, I identified a Windows machine (`WIN-S6NMGD0051Q`) that automatically created an **Entra registered** device profile during a previous login sequence.
+
+  ![Checking the device list for registered phones or computers](ty_2.jpg)
+
+#### 🚀 Why This Matters for Help Desk Support
+* **First Step for Mobile Issues**: If a user reports their phone won't sync email, the **Mobile (Exchange ActiveSync)** checkbox is the very first setting the help desk verifies. If it's unchecked, access is blocked.
+* **Tracking Assets**: Checking the Entra ID device list allows a technician to confirm if a user's phone or computer successfully made a handshake with the organization's cloud network.
+* **Security & Remote Wipe**: Ensuring an ActiveSync partnership exists gives administrators the power to trigger a **Remote Wipe** to delete corporate emails if an employee loses their device.
+
+
+
+
+
 
