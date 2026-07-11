@@ -1010,7 +1010,7 @@ In this phase, I verified how to manage mobile access for user mailboxes and how
 
 * **Audited Registered Devices**: Opened the Microsoft Entra ID device directory to search for any registered smartphones. While no physical mobile phone has logged into this test account yet, I identified a Windows machine (`WIN-S6NMGD0051Q`) that automatically created an **Entra registered** device profile during a previous login sequence.
 
-  ![Checking the device list for registered phones or computers](ty_2.jpg)
+  ![Checking the device list for registered phones or computers](ty.jpg)
 
 #### 🚀 Why This Matters for Help Desk Support
 * **First Step for Mobile Issues**: If a user reports their phone won't sync email, the **Mobile (Exchange ActiveSync)** checkbox is the very first setting the help desk verifies. If it's unchecked, access is blocked.
