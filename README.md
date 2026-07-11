@@ -992,7 +992,7 @@ To enforce corporate compliance frameworks and optimize user-facing technical su
 * **Org Settings Policy Modulation**: Configured shared corporate profiles within the Microsoft 365 Admin Center workspace, hardcoding designated help desk contact pointers and uniform navigation theme parameters globally across all subscriber nodes.
 * **Pre-Authentication Branding Enforcement**: Managed the entry-level authentication interface within the Entra ID user experience engine, mapping out identity verification gates to surface corporate structural markers and trust parameters before credential validation.
 
-  ![Configuring Global Tenant Branding and Support Metadata](tenant_branding_config.jpg)
+  ![Configuring Global Tenant Branding and Support Metadata](tenant_branding_confi.jpg)
 
 #### 🚀 Technical Outcomes
 * **Phishing Mitigation Baseline**: Presenting distinct, company-approved visual profiles at the pre-login gate helps train end-users to distinguish the real corporate authentication portal from malicious external lookalikes.
