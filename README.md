@@ -42,6 +42,7 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 32: Enterprise Governance & Tenant Brand Customization
 - [x] Phase 33: Mobile Email Apps & Device Checking
 - [x] Phase 34: Shared Folder Permissions & Account Lifecycle Triage
+- [x] Phase 35: System Storage Triage & Enterprise User Profile Remediation
 
 ### Phase 1 Implementation Evidence
    Here is the pristine Hyper-V virtualization host environment initialized on the host laptop before OS deployment:
@@ -1044,6 +1045,36 @@ In this phase, I resolved two common tier-1 help desk issues: troubleshooting re
 * **Security Group Efficiency**: Adding users to groups rather than assigning folder permissions individually prevents permission sprawl and makes onboarding/offboarding employees seamless.
 * **Share vs. NTFS Rule**: IT technicians must configure both Share and NTFS layers correctly because Windows automatically applies the *most restrictive* combination of the two when a user connects over a network.
 * **Identity Control**: Unlocking and enabling accounts is a daily help desk function required to restore user productivity safely after extended leaves or security lockout thresholds are tripped.
+
+
+### 🗄️ Phase 35: Lab Documentation: Resolving Disk Space Exhaustion & Session Resource Bloat
+
+#### 📋 Overview
+In this scenario, I implemented a multi-stage administrative strategy to resolve a critical system storage exhaustion and resource bottleneck event. I demonstrated how to audit real-time system resource consumption, perform safe automated OS directory cleanup, and target stale, historical data profiles to reclaim disk space.
+
+#### ⚙️ Step-by-Step Execution & Tooling
+
+1. **Real-Time Active Session Triage (Task Manager)**
+   * **Action**: Opened Task Manager and navigated directly to the **Users** tab to audit live human interactive sessions. 
+   * **Purpose**: This allows a technician to check real-time CPU and Memory usage per profile. On shared infrastructure like corporate terminal servers or VMs, this view is essential to identify if an active or disconnected background user is causing immediate system resource starvation.
+   
+   ![Auditing active user sessions and memory consumption inside Task Manager](active_users_triage.jpg)
+
+2. **System Cache Reclamation (Administrative Disk Cleanup)**
+   * **Action**: Launched the native Windows **Disk Cleanup** utility with elevated administrative privileges (`Run as administrator`).
+   * **Purpose**: Running the tool as an administrator unlocks hidden system directories. This safely aggregates and purges non-critical junk files—such as Microsoft Defender temporary items, system error memory dumps, Delivery Optimization caches, and old Windows Update remnants—without risking operating system stability.
+
+   ![Configuring system-level file cleanup options in Disk Cleanup](disk_cleanup_admin.jpg)
+
+3. **Stale Historical Account Purging (Advanced User Profiles)**
+   * **Action**: Executed `sysdm.cpl` via the Run dialog, navigated to the **Advanced** tab, and launched the **User Profiles** configuration sub-utility.
+   * **Purpose**: Unlike Task Manager (which only shows live, running sessions), this dedicated management console lists *every* account that has ever historically logged onto the machine. This allows help desk technicians to safely view exactly how much storage space old user profiles are hoarding and cleanly delete obsolete employee profiles to reclaim gigabytes of storage space permanently.
+
+   ![Using the Advanced User Profiles utility to audit and delete historical profile data](user_profiles.jpg)
+
+#### 🚀 Help Desk Key Takeaways
+* **Task Manager vs. Profile Storage**: Task Manager is for *active memory/CPU triage*; the Advanced User Profiles menu is for *historical storage cleanup*. Understanding this distinction prevents a technician from misdiagnosing where hidden storage blockages reside.
+* **Enterprise Safety Compliance**: Manually deleting folders under `C:\Users\` can leave orphaned registry keys and corrupt the local machine's security identifier (SID) table. Utilizing `sysdm.cpl` ensures Windows cleanly uninstalls the user profile folder along with its corresponding registry entry hooks.
 
 
 
