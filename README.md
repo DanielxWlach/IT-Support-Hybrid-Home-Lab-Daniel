@@ -40,6 +40,8 @@ An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domai
 - [x] Phase 30: Mail-Enabled External Contacts & Global Address List (GAL) Integration
 - [x] Phase 31: Role-Based Access Control (RBAC) & Identity Lifecycle Promotion
 - [x] Phase 32: Enterprise Governance & Tenant Brand Customization
+- [x] Phase 33: Mobile Email Apps & Device Checking
+- [x] Phase 34: Shared Folder Permissions & Account Lifecycle Triage
 
 ### Phase 1 Implementation Evidence
    Here is the pristine Hyper-V virtualization host environment initialized on the host laptop before OS deployment:
@@ -1018,7 +1020,30 @@ In this phase, I verified how to manage mobile access for user mailboxes and how
 * **Security & Remote Wipe**: Ensuring an ActiveSync partnership exists gives administrators the power to trigger a **Remote Wipe** to delete corporate emails if an employee loses their device.
 
 
+### 📂 Phase 34: Lab Documentation: Resolving File Access Blocks & Account Lockouts
 
+#### 📋 Overview
+In this phase, I resolved two common tier-1 help desk issues: troubleshooting restricted shared folder permissions via Security Groups, and managing active directory account states for locked-out or disabled users.
+
+#### ⚙️ What I Did
+* **Group-Based Access Allocation**: Added the test user `Tarik Malik` to the `SG-HR` Security Group within Active Directory Users and Computers. 
+* **Configured Network Sharing & NTFS Security**: Located the `HR_Data` folder on the local disk. Set up Advanced Sharing by removing generic access and explicitly granting the `SG-HR` group **Change/Read** Share Permissions. Then, matched this on the Security tab by adding the group with **Modify** NTFS permissions.
+
+
+  ![Adding User TMalik to SG-HR SecGroup](user_added_secgroup.jpg)
+  ![Configuring Share Permissions for the SG-HR Group](permissions_hr_data.jpg)
+  ![Configuring NTFS Security Modify permissions for the SG-HR Group](Permission_hr_2.jpg)
+
+* **Account Status Audit**: Navigated to the **Account** tab within the user's Active Directory properties to verify the location of administrative override switches used to unlock accounts following credential failures or toggle the 'Account is disabled' lifecycle setting.
+
+  ![Enabling User Account via AD](User_enable_account.jpg)
+  ![Enabling User Account via Entra](Account_enabled_entra.jpg)
+  
+
+#### 🚀 Why This Matters for Help Desk Support
+* **Security Group Efficiency**: Adding users to groups rather than assigning folder permissions individually prevents permission sprawl and makes onboarding/offboarding employees seamless.
+* **Share vs. NTFS Rule**: IT technicians must configure both Share and NTFS layers correctly because Windows automatically applies the *most restrictive* combination of the two when a user connects over a network.
+* **Identity Control**: Unlocking and enabling accounts is a daily help desk function required to restore user productivity safely after extended leaves or security lockout thresholds are tripped.
 
 
 
