@@ -1078,3 +1078,32 @@ In this scenario, I implemented a multi-stage administrative strategy to resolve
 
 
 
+### 🧰 Phase 36: Lab Documentation: Resolving Frozen Desktop Processes via Task Manager
+
+#### 📋 Overview
+In this scenario, an end-user experienced a complete freeze of the Microsoft Edge web browser on a Windows Server 2022 environment (`DC-Server-2022`). Standard window controls were unresponsive, preventing normal operation or standard application termination. I executed a targeted process termination via Task Manager to safely release system resources and restore browser functionality.
+
+#### ⚙️ Step-by-Step Execution & Tooling
+
+1. **Process Identification & Force Termination (Task Manager)**
+   * **Action**: Launched Task Manager (`Ctrl + Shift + Esc`), identified the hanging `Microsoft Edge` process under the **Apps** section, right-clicked the parent process, and selected **End task**.
+   * **Purpose**: Forces the operating system to immediately release locked memory addresses and terminate hung process handles (`msedge.exe`) that prevent new GUI instances from spawning.
+
+   ![Terminating unresponsive Microsoft Edge process via Task Manager context menu](TM_End_Process.jpg)
+
+2. **Verification & Application Relaunch**
+   * **Action**: Monitored the **Processes** tab to ensure all child worker threads cleared from memory, then relaunched Microsoft Edge from the desktop shortcut.
+   * **Purpose**: Confirms that the application state is completely reset and that normal browser operations are restored without requiring a full system reboot.
+
+---
+
+#### 💡 Technical Analysis & Tier 1 Takeaways
+* **Root Cause**: A worker thread encountered an unhandled exception or memory deadlock, locking the primary parent process in system memory.
+* **Command Line Alternative**: If Task Manager becomes unresponsive, the same task force-kill can be executed via Command Prompt:
+  ```cmd
+  taskkill /F /IM msedge.exe
+
+
+
+
+
