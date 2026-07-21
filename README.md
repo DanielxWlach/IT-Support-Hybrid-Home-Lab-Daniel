@@ -4,8 +4,6 @@ Personal Home Lab of Daniel Wlach
 ## Overview
 An enterprise-grade sandbox integrating an on-premises Windows Server 2022 domain environment with Microsoft 365 Cloud Architecture, Entra ID, and Intune Endpoint Management.
 
-## Lab Topology
-* [Insert Lab Diagram Here]
 
 ## Milestones Documented
 - [x] Phase 1: M365 Cloud Sandbox Setup & User Provisioning
