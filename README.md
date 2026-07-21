@@ -1103,6 +1103,33 @@ In this scenario, an end-user experienced a complete freeze of the Microsoft Edg
   taskkill /F /IM msedge.exe
 
 
+### 🧰 Phase 37: Lab Documentation: Suppressing Disruptive Taskbar Widgets & Hover Notifications
 
+#### 📋 Overview
+In this scenario, an end-user reported frequent visual disruptions caused by automatic popups appearing from the Taskbar during active work. The root cause was identified as the native Windows Widgets feature (e.g., news feeds, weather updates, and dynamic taskbar badges) triggering on cursor hover or system updates. I reconfigured the Taskbar behavioral settings to disable news and interest feeds, preventing accidental triggers and restoring a distraction-free desktop environment.
+
+#### ⚙️ Step-by-Step Execution & Tooling
+
+1. **Accessing Taskbar Settings**
+   * **Action**: Right-clicked an empty area on the Windows Taskbar and selected **Taskbar settings** (or navigated to **Settings** > **Personalization** > **Taskbar**).
+   * **Purpose**: Opens the central configuration control panel for system tray items and integrated desktop widgets.
+
+2. **Disabling Widgets & Dynamic Feeds**
+   * **Action**: Under the **Taskbar items** section, toggled the **Widgets** setting to **Off**. 
+   * **Purpose**: Completely removes the Widget icon/weather feed from the Taskbar, preventing popups from launching when the mouse inadvertently hovers over the lower-left or center region of the screen.
+
+   ![Disabling Widgets in Windows Taskbar Settings](Widgets.jpg)
+
+3. **Suppressing Notification Badges & Toasts (Optional Fine-Tuning)**
+   * **Action**: Navigated to **Settings** > **System** > **Notifications** and disabled * "Show notifications on the lock screen" * and turned off hover-activated toast alerts for non-essential applications.
+   * **Purpose**: Eliminates background popups from marketing or web feeds while preserving critical system alerts.
+
+---
+
+#### 💡 Technical Analysis & Tier 1 Takeaways
+* **Root Cause**: Windows default settings enable interactive Taskbar widgets that automatically expand on mouse hover (`Open on hover` setting), leading to accidental popovers while working across multiple windows.
+* **Enterprise / Group Policy Alternative**: In an Active Directory domain environment, Windows Widgets can be globally disabled across all endpoints using Group Policy Manager (GPO):
+  ```text
+  Computer Configuration > Administrative Templates > Windows Components > Widgets > Allow widgets -> Disabled
 
 
